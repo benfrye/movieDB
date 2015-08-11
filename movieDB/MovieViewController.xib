@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieViewController" customModule="movieDB" customModuleProvider="target">
+            <connections>
+                <outlet property="backdropImageView" destination="rKz-aF-TuV" id="KXk-fd-tNe"/>
+                <outlet property="tableView" destination="deC-5V-W7z" id="K1M-6j-g1O"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrJ-2k-06n">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rKz-aF-TuV">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        </imageView>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="4" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="deC-5V-W7z">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="rKz-aF-TuV" firstAttribute="leading" secondItem="HrJ-2k-06n" secondAttribute="leading" id="2tz-nr-ftB"/>
+                        <constraint firstAttribute="trailing" secondItem="rKz-aF-TuV" secondAttribute="trailing" id="KBm-ll-9Ex"/>
+                        <constraint firstAttribute="trailing" secondItem="deC-5V-W7z" secondAttribute="trailing" id="a0i-nK-CEc"/>
+                        <constraint firstItem="deC-5V-W7z" firstAttribute="top" secondItem="HrJ-2k-06n" secondAttribute="top" id="hNb-nh-Uvu"/>
+                        <constraint firstItem="deC-5V-W7z" firstAttribute="leading" secondItem="HrJ-2k-06n" secondAttribute="leading" id="iuF-jm-ei8"/>
+                        <constraint firstAttribute="bottom" secondItem="deC-5V-W7z" secondAttribute="bottom" id="qgc-td-m9z"/>
+                        <constraint firstItem="rKz-aF-TuV" firstAttribute="top" secondItem="HrJ-2k-06n" secondAttribute="top" id="trG-nk-6M9"/>
+                        <constraint firstAttribute="bottom" secondItem="rKz-aF-TuV" secondAttribute="bottom" id="txf-88-cxe"/>
+                        <constraint firstItem="deC-5V-W7z" firstAttribute="top" secondItem="HrJ-2k-06n" secondAttribute="top" id="uxT-p0-1Gc"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="uxT-p0-1Gc"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="HrJ-2k-06n" secondAttribute="bottom" id="2qb-Zr-aXe"/>
+                <constraint firstAttribute="trailing" secondItem="HrJ-2k-06n" secondAttribute="trailing" id="7Ak-HM-eyl"/>
+                <constraint firstItem="HrJ-2k-06n" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MOH-Yc-LY7"/>
+                <constraint firstItem="HrJ-2k-06n" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NzK-Lo-31o"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

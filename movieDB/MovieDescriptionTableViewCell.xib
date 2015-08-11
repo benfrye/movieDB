@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeueExtras.ttc">
+            <string>HelveticaNeue-CondensedBold</string>
+        </mutableArray>
+        <mutableArray key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Thin</string>
+            <string>HelveticaNeue-UltraLight</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="159" id="KGk-i7-Jjw" customClass="MovieDescriptionTableViewCell" customModule="movieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="507" height="159"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="507" height="158.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOj-Zf-cWy">
+                        <rect key="frame" x="8" y="8" width="98.5" height="27.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="23"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEM-lI-Z8Y">
+                        <rect key="frame" x="8" y="68" width="70.5" height="18"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xf0-vg-imp">
+                        <rect key="frame" x="8" y="41" width="24.5" height="15"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EEM-lI-Z8Y" secondAttribute="trailing" constant="8" id="2kI-9r-Rsf"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="QOj-Zf-cWy" secondAttribute="leading" id="5il-rJ-jea"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="xf0-vg-imp" secondAttribute="trailing" constant="8" id="68C-h5-eA7"/>
+                    <constraint firstAttribute="topMargin" secondItem="QOj-Zf-cWy" secondAttribute="top" id="8lr-rH-NzR"/>
+                    <constraint firstAttribute="leading" secondItem="EEM-lI-Z8Y" secondAttribute="leading" constant="-8" id="Gpz-sw-3Na"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="EEM-lI-Z8Y" secondAttribute="bottom" constant="8" id="OgN-Ll-fpb"/>
+                    <constraint firstItem="EEM-lI-Z8Y" firstAttribute="top" secondItem="xf0-vg-imp" secondAttribute="bottom" constant="12" id="PT8-F2-AzP"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="xf0-vg-imp" secondAttribute="trailing" constant="8" id="ZIh-7O-F2v"/>
+                    <constraint firstItem="xf0-vg-imp" firstAttribute="leading" secondItem="QOj-Zf-cWy" secondAttribute="trailing" constant="8" id="a1O-cH-tql"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="EEM-lI-Z8Y" secondAttribute="leading" id="crI-CB-c5m"/>
+                    <constraint firstItem="EEM-lI-Z8Y" firstAttribute="top" secondItem="QOj-Zf-cWy" secondAttribute="bottom" constant="7.5" id="iAJ-iN-Z52"/>
+                    <constraint firstItem="xf0-vg-imp" firstAttribute="top" secondItem="QOj-Zf-cWy" secondAttribute="bottom" constant="6" id="tWe-6S-S3G"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="xf0-vg-imp" secondAttribute="leading" id="ucz-lt-Q6k"/>
+                    <constraint firstItem="xf0-vg-imp" firstAttribute="baseline" secondItem="QOj-Zf-cWy" secondAttribute="baseline" id="wMa-CK-q7u"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="68C-h5-eA7"/>
+                        <exclude reference="a1O-cH-tql"/>
+                        <exclude reference="wMa-CK-q7u"/>
+                        <exclude reference="crI-CB-c5m"/>
+                        <exclude reference="iAJ-iN-Z52"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="xf0-vg-imp" id="9M5-Dr-KdI"/>
+                <outlet property="descriptionLabel" destination="EEM-lI-Z8Y" id="8G8-lf-J4j"/>
+                <outlet property="titleLabel" destination="QOj-Zf-cWy" id="duj-TH-qZ6"/>
+            </connections>
+            <point key="canvasLocation" x="418.5" y="205.5"/>
+        </tableViewCell>
+    </objects>
+</document>

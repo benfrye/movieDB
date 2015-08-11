@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Thin</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SimpleHeaderView" customModule="movieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="39"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DQ5-u8-Um1">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="39"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Header Title" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCg-4W-fP2">
+                            <rect key="frame" x="8" y="8" width="84.5" height="26.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8St-Qs-IwX" userLabel="Separator">
+                            <rect key="frame" x="8" y="38" width="592" height="1"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="t5W-g2-LDt"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="8St-Qs-IwX" secondAttribute="bottom" id="0zw-4S-Og8"/>
+                        <constraint firstItem="xCg-4W-fP2" firstAttribute="leading" secondItem="DQ5-u8-Um1" secondAttribute="leading" constant="8" id="7T2-5g-dj1"/>
+                        <constraint firstItem="xCg-4W-fP2" firstAttribute="centerY" secondItem="DQ5-u8-Um1" secondAttribute="centerY" id="95c-Jl-aei"/>
+                        <constraint firstItem="8St-Qs-IwX" firstAttribute="leading" secondItem="DQ5-u8-Um1" secondAttribute="leading" constant="8" id="E2L-rq-N1y"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xCg-4W-fP2" secondAttribute="trailing" constant="8" id="YSj-bF-2Dq"/>
+                        <constraint firstItem="xCg-4W-fP2" firstAttribute="top" secondItem="DQ5-u8-Um1" secondAttribute="top" constant="8" id="gEG-j3-U8X"/>
+                        <constraint firstItem="8St-Qs-IwX" firstAttribute="top" secondItem="xCg-4W-fP2" secondAttribute="bottom" constant="4" id="jsg-8Z-4dX"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xCg-4W-fP2" secondAttribute="bottom" constant="8" id="rMV-5c-Kdv"/>
+                        <constraint firstAttribute="trailing" secondItem="8St-Qs-IwX" secondAttribute="trailing" id="tIc-g9-Mxm"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="95c-Jl-aei"/>
+                            <exclude reference="rMV-5c-Kdv"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="DQ5-u8-Um1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Kav-XS-Qnu"/>
+                <constraint firstItem="DQ5-u8-Um1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nXo-4o-3ES"/>
+                <constraint firstAttribute="trailing" secondItem="DQ5-u8-Um1" secondAttribute="trailing" id="wU9-DH-QWw"/>
+                <constraint firstAttribute="bottom" secondItem="DQ5-u8-Um1" secondAttribute="bottom" id="yjj-CU-Pao"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="separatorView" destination="8St-Qs-IwX" id="zCp-sC-Jk5"/>
+                <outlet property="titleLabel" destination="xCg-4W-fP2" id="Pa3-nv-Jhc"/>
+            </connections>
+            <point key="canvasLocation" x="351" y="263.5"/>
+        </view>
+    </objects>
+</document>
