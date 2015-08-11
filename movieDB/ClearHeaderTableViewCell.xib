@@ -12,22 +12,6 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="140.5"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="miR-6T-7xY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="140" id="CkG-Yc-dcQ"/>
-                        </constraints>
-                    </view>
-                </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                <constraints>
-                    <constraint firstItem="miR-6T-7xY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6Ii-bn-6Wv"/>
-                    <constraint firstAttribute="bottom" secondItem="miR-6T-7xY" secondAttribute="bottom" id="AM7-XM-TM1"/>
-                    <constraint firstItem="miR-6T-7xY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Uhh-ev-KVR"/>
-                    <constraint firstAttribute="trailing" secondItem="miR-6T-7xY" secondAttribute="trailing" id="Vtu-ea-aQn"/>
-                </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="481" y="270.5"/>

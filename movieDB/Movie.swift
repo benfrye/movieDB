@@ -22,6 +22,7 @@ class Movie: NSObject {
     var cachedCast: [Cast]?
     var cachedDirector: Crew?
     var cachedWriters: [Crew]?
+    var cachedReviews: [String]?
     
     init(movieID: Int, title: String, plotDescription: String?, releaseDate: NSDate?, posterPath: String?) {
         
@@ -146,5 +147,11 @@ class Movie: NSObject {
                 }
             }
         })
+    }
+    
+    func reviews(completion: ([String]?) -> Void) {
+        MovieImporter.sharedInstance.reviewsForMovieID(movieID) { (reviews) -> Void in
+            
+        }
     }
 }

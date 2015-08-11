@@ -163,6 +163,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             collectionViewCell.movie = dataSource[indexPath.row]
             dataSource[indexPath.row].poster { (posterImage) -> Void in
                 
+                //don't change the image if this cell has been recycled
                 if
                     let movie = collectionViewCell.movie where movie == dataSource[indexPath.row],
                     let posterImage = posterImage

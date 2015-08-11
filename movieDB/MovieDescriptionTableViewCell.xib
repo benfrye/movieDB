@@ -23,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="507" height="158.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOj-Zf-cWy">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOj-Zf-cWy">
                         <rect key="frame" x="8" y="8" width="98.5" height="27.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="23"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -46,6 +46,7 @@
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EEM-lI-Z8Y" secondAttribute="trailing" constant="8" id="2kI-9r-Rsf"/>
                     <constraint firstAttribute="leadingMargin" secondItem="QOj-Zf-cWy" secondAttribute="leading" id="5il-rJ-jea"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="xf0-vg-imp" secondAttribute="trailing" constant="8" id="68C-h5-eA7"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="QOj-Zf-cWy" secondAttribute="trailing" constant="8" id="7q4-AZ-sR1"/>
                     <constraint firstAttribute="topMargin" secondItem="QOj-Zf-cWy" secondAttribute="top" id="8lr-rH-NzR"/>
                     <constraint firstAttribute="leading" secondItem="EEM-lI-Z8Y" secondAttribute="leading" constant="-8" id="Gpz-sw-3Na"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="EEM-lI-Z8Y" secondAttribute="bottom" constant="8" id="OgN-Ll-fpb"/>

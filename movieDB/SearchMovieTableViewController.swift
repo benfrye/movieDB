@@ -32,7 +32,7 @@ class SearchMovieTableViewController: UIViewController, UISearchBarDelegate, UIT
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.registerNib(UINib(nibName: MovieTableCell.className, bundle: nil), forCellReuseIdentifier: MovieTableCell.className)
+        tableView.registerNib(UINib(nibName: ImageTitleSubtitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ImageTitleSubtitleTableViewCell.className)
     }
     
     
@@ -74,7 +74,7 @@ class SearchMovieTableViewController: UIViewController, UISearchBarDelegate, UIT
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if
-            let cell = tableView.dequeueReusableCellWithIdentifier(MovieTableCell.className) as? MovieTableCell,
+            let cell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell,
             let dataSource = dataSource
         {
             let movie = dataSource[indexPath.row]
@@ -84,15 +84,16 @@ class SearchMovieTableViewController: UIViewController, UISearchBarDelegate, UIT
             
             //Poster Image
             movie.poster({ (posterImage) -> Void in
+                //don't change the image if this cell has been recycled
                 if cell.titleLabel.text == movie.title {
-                    cell.posterImageView.image = posterImage
+                    cell.thumbnailImageView.image = posterImage
                 }
             })
             
             //Release Date
             if let releaseDate = movie.releaseDate {
                 
-                cell.releaseDateLabel.text = self.dateFormatter.stringFromDate(releaseDate)
+                cell.subtitleLabel.text = self.dateFormatter.stringFromDate(releaseDate)
             }
             
             return cell
@@ -106,11 +107,11 @@ class SearchMovieTableViewController: UIViewController, UISearchBarDelegate, UIT
 // MARK: UITableViewDelegate Methods
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return 113.0
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return 113.0
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

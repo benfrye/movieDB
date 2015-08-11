@@ -159,4 +159,17 @@ class MovieImporter {
             }
         }
     }
+    
+    func reviewsForMovieID(movieID: Int, completion: ([String]?) -> Void) {
+        
+        let searchRoute = "\(NetworkManager.baseRoute)/movie/\(movieID)/reviews"
+        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (_, _, response) -> Void in
+            
+            if let data = response.value {
+                let JSONData = JSON(data)
+                print(JSONData, appendNewline: true)
+            }
+        }
+    }
+    
 }

@@ -1,5 +1,5 @@
 //
-//  MovieTableCell.swift
+//  ImageTitleSubtitleTableViewCell.swift
 //  movieDB
 //
 //  Created by Ben Frye on 8/5/15.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class MovieTableCell: UITableViewCell {
+class ImageTitleSubtitleTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var noPhotoLabel: UILabel!
+    @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var releaseDateLabel: UILabel!
-    @IBOutlet weak var directorLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
     
-    static let className = "MovieTableCell" // FIXME: Need to find a nicer way of doing this
+    static let className = "ImageTitleSubtitleTableViewCell" // FIXME: Need to find a nicer way of doing this
     
     override func awakeFromNib() {
         
@@ -31,10 +31,10 @@ class MovieTableCell: UITableViewCell {
     override func prepareForReuse() {
     
         super.prepareForReuse()
-        self.posterImageView.image = nil
+        self.thumbnailImageView.image = nil
+        self.noPhotoLabel.hidden = false
         self.titleLabel.text = ""
-        self.releaseDateLabel.text = ""
-        self.directorLabel.text = ""
+        self.subtitleLabel.text = ""
     }
     
 }

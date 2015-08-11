@@ -13,6 +13,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     enum TableSections: Int {
         case HeaderSection
         case DetailSection
+        case ReviewSection
         case CrewSection
         case CastSection
         case SectionCount
@@ -31,6 +32,12 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         configureView()
+        
+        if let movie = movie {
+            movie.reviews({ (reviews) -> Void in
+                
+            })
+        }
     }
     
     func configureTableView() {
@@ -38,11 +45,12 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.registerNib(UINib(nibName: SimpleHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: SimpleHeaderView.className)
+        
         tableView.registerNib(UINib(nibName: ClearHeaderTableViewCell.className, bundle: nil), forCellReuseIdentifier: ClearHeaderTableViewCell.className)
         tableView.registerNib(UINib(nibName: MovieDescriptionTableViewCell.className, bundle: nil), forCellReuseIdentifier: MovieDescriptionTableViewCell.className)
-        tableView.registerNib(UINib(nibName: CrewTableViewCell.className, bundle: nil), forCellReuseIdentifier: CrewTableViewCell.className)
-        
-        tableView.registerNib(UINib(nibName: SimpleHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: SimpleHeaderView.className)
+        tableView.registerNib(UINib(nibName: SimpleChevronTableViewCell.className, bundle: nil), forCellReuseIdentifier: SimpleChevronTableViewCell.className)
+        tableView.registerNib(UINib(nibName: ImageTitleSubtitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ImageTitleSubtitleTableViewCell.className)
     }
     
     func configureView() {
@@ -75,11 +83,6 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         var numberOfRows: Int?
         
         switch section {
-        case TableSections.HeaderSection.rawValue:
-            numberOfRows = 1
-            
-        case TableSections.DetailSection.rawValue:
-            numberOfRows = 1
             
         case TableSections.CastSection.rawValue:
             numberOfRows = self.castDataSource?.count
@@ -88,7 +91,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
             numberOfRows = self.crewDataSource?.count
             
         default:
-            numberOfRows = 0
+            numberOfRows = 1
         }
         
         if let numberOfRows = numberOfRows {
@@ -100,7 +103,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
-        cell.backgroundColor = UIColor.whiteColor()
+        cell.contentView.backgroundColor = UIColor.whiteColor()
         
         switch indexPath.section {
         case TableSections.HeaderSection.rawValue:
@@ -119,21 +122,29 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
                 cell = detailCell
             }
             
+        case TableSections.ReviewSection.rawValue:
+            if let reviewCell = tableView.dequeueReusableCellWithIdentifier(SimpleChevronTableViewCell.className) as? SimpleChevronTableViewCell {
+                
+                reviewCell.titleLabel.text = "Reviews"
+                cell = reviewCell
+            }
+            
         case TableSections.CastSection.rawValue:
-            if let castCell = tableView.dequeueReusableCellWithIdentifier(CrewTableViewCell.className) as? CrewTableViewCell {
+            if let castCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell {
                 
                 if let dataSource = castDataSource {
                     
                     let castMember = dataSource[indexPath.row]
-                    castCell.nameLabel.text = castMember.name
-                    castCell.jobLabel.text = castMember.characterName
+                    castCell.titleLabel.text = castMember.name
+                    castCell.subtitleLabel.text = castMember.characterName
                     castMember.profileImage({ (profileImage) -> Void in
                         
+                        //don't change the image if this cell has been recycled
                         if
-                            castCell.nameLabel.text == castMember.name,
+                            castCell.titleLabel.text == castMember.name,
                             let profileImage = profileImage
                         {
-                            castCell.profileImageView.image = profileImage
+                            castCell.thumbnailImageView.image = profileImage
                         }
                         else
                         {
@@ -146,19 +157,20 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
             
         case TableSections.CrewSection.rawValue:
-            if let crewCell = tableView.dequeueReusableCellWithIdentifier(CrewTableViewCell.className) as? CrewTableViewCell {
+            if let crewCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell {
                 if let dataSource = crewDataSource {
                     
                     let crewMember = dataSource[indexPath.row]
+                    crewCell.titleLabel.text = crewMember.name
+                    crewCell.subtitleLabel.text = crewMember.job
                     crewMember.profileImage({ (profileImage) -> Void in
                         
-                        crewCell.nameLabel.text = crewMember.name
-                        crewCell.jobLabel.text = crewMember.job
+                        //don't change the image if this cell has been recycled
                         if
-                            crewCell.nameLabel.text == crewMember.name,
+                            crewCell.titleLabel.text == crewMember.name,
                             let profileImage = profileImage
                         {
-                            crewCell.profileImageView.image = profileImage
+                            crewCell.thumbnailImageView.image = profileImage
                         }
                         else
                         {
@@ -210,13 +222,7 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         case TableSections.HeaderSection.rawValue:
             return 225.0
             
-        case TableSections.DetailSection.rawValue:
-            return UITableViewAutomaticDimension
-            
-        case TableSections.CastSection.rawValue:
-            return 100.0
-            
-        case TableSections.CrewSection.rawValue:
+        case TableSections.CastSection.rawValue, TableSections.CrewSection.rawValue:
             return 100.0
             
         default:
