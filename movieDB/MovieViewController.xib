@@ -19,7 +19,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrJ-2k-06n">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rKz-aF-TuV">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rKz-aF-TuV">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         </imageView>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="4" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="deC-5V-W7z">
@@ -30,18 +30,18 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="rKz-aF-TuV" firstAttribute="leading" secondItem="HrJ-2k-06n" secondAttribute="leading" id="2tz-nr-ftB"/>
+                        <constraint firstAttribute="bottom" secondItem="rKz-aF-TuV" secondAttribute="bottom" id="AgV-0P-yaw"/>
                         <constraint firstAttribute="trailing" secondItem="rKz-aF-TuV" secondAttribute="trailing" id="KBm-ll-9Ex"/>
                         <constraint firstAttribute="trailing" secondItem="deC-5V-W7z" secondAttribute="trailing" id="a0i-nK-CEc"/>
                         <constraint firstItem="deC-5V-W7z" firstAttribute="top" secondItem="HrJ-2k-06n" secondAttribute="top" id="hNb-nh-Uvu"/>
                         <constraint firstItem="deC-5V-W7z" firstAttribute="leading" secondItem="HrJ-2k-06n" secondAttribute="leading" id="iuF-jm-ei8"/>
+                        <constraint firstAttribute="bottom" secondItem="rKz-aF-TuV" secondAttribute="bottom" id="mJU-GZ-5Bh"/>
                         <constraint firstAttribute="bottom" secondItem="deC-5V-W7z" secondAttribute="bottom" id="qgc-td-m9z"/>
                         <constraint firstItem="rKz-aF-TuV" firstAttribute="top" secondItem="HrJ-2k-06n" secondAttribute="top" id="trG-nk-6M9"/>
-                        <constraint firstAttribute="bottom" secondItem="rKz-aF-TuV" secondAttribute="bottom" id="txf-88-cxe"/>
-                        <constraint firstItem="deC-5V-W7z" firstAttribute="top" secondItem="HrJ-2k-06n" secondAttribute="top" id="uxT-p0-1Gc"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="uxT-p0-1Gc"/>
+                            <exclude reference="mJU-GZ-5Bh"/>
                         </mask>
                     </variation>
                 </view>

@@ -32,12 +32,6 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         configureView()
-        
-        if let movie = movie {
-            movie.reviews({ (reviews) -> Void in
-                
-            })
-        }
     }
     
     func configureView() {
@@ -126,6 +120,13 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
             if let reviewCell = tableView.dequeueReusableCellWithIdentifier(SimpleChevronTableViewCell.className) as? SimpleChevronTableViewCell {
                 
                 reviewCell.titleLabel.text = "Reviews"
+                reviewCell.setSelectable(false)
+                movie?.reviews({ (reviews) -> Void in
+                    if let reviews = reviews where reviews.count > 0 {
+                        reviewCell.setSelectable(true)
+                    }
+                })
+                
                 cell = reviewCell
             }
             
@@ -256,7 +257,36 @@ class MovieViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        switch indexPath.section {
+        case TableSections.ReviewSection.rawValue:
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SimpleChevronTableViewCell where cell.isSelectable {
+                return true
+            } else {
+                break
+            }
+            
+        default:
+            break
+        }
+        
         return false
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch indexPath.section {
+            
+        case TableSections.ReviewSection.rawValue:
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            let reviewViewController = ReviewViewController()
+            reviewViewController.movie = self.movie
+            navigationController?.pushViewController(reviewViewController, animated: true)
+            
+        default:
+            break
+            
+        }
     }
 
 }

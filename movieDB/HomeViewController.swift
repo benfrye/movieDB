@@ -245,16 +245,17 @@ class HomeViewController:
             dataSource[indexPath.row].poster { (posterImage) -> Void in
                 
                 //don't change the image if this cell has been recycled
-                if
-                    let movie = collectionViewCell.movie where movie == dataSource[indexPath.row],
-                    let posterImage = posterImage
-                {
-                    collectionViewCell.movieImageView.image = posterImage
-                }
-                else
-                {
-                    collectionViewCell.defaultLabel.text = dataSource[indexPath.row].title
-                    collectionViewCell.defaultLabel.hidden = false
+                if let movie = collectionViewCell.movie where movie == dataSource[indexPath.row] {
+                    
+                    if let posterImage = posterImage {
+                        
+                        collectionViewCell.movieImageView.image = posterImage
+                        
+                    } else {
+                        
+                        collectionViewCell.defaultLabel.text = dataSource[indexPath.row].title
+                        collectionViewCell.defaultLabel.hidden = false
+                    }
                 }
             }
             return collectionViewCell

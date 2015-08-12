@@ -160,16 +160,27 @@ class MovieImporter {
         }
     }
     
-    func reviewsForMovieID(movieID: Int, completion: ([String]?) -> Void) {
+    func reviewsForMovieID(movieID: Int, completion: ([Review]?) -> Void) {
         
         let searchRoute = "\(NetworkManager.baseRoute)/movie/\(movieID)/reviews"
         NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (_, _, response) -> Void in
             
             if let data = response.value {
+                
                 let JSONData = JSON(data)
-                print(JSONData, appendNewline: true)
+                var reviews = [Review]()
+                for (_, subJson) in JSONData["results"] {
+                    let review = Review(
+                        author: subJson["author"].stringValue,
+                        content: subJson["content"].stringValue)
+                    reviews.append(review)
+                }
+                completion(reviews)
+                
+            } else {
+                
+                completion(nil)
             }
         }
     }
-    
 }

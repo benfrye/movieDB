@@ -27,6 +27,10 @@
 		179D9F411B72509B008E8FD9 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179D9F401B72509B008E8FD9 /* Movie.swift */; };
 		179D9F4A1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179D9F481B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift */; };
 		179D9F4B1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 179D9F491B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib */; };
+		17BE01241B7BD27500BE5683 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE01221B7BD27500BE5683 /* ReviewViewController.swift */; };
+		17BE01251B7BD27500BE5683 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BE01231B7BD27500BE5683 /* ReviewViewController.xib */; };
+		17BE012A1B7BD38300BE5683 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE01281B7BD38300BE5683 /* ReviewTableViewCell.swift */; };
+		17BE012B1B7BD38300BE5683 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BE01291B7BD38300BE5683 /* ReviewTableViewCell.xib */; };
 		17BE51B51B70F42700E87FAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE51B41B70F42700E87FAE /* AppDelegate.swift */; };
 		17BE51BC1B70F42700E87FAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17BE51BA1B70F42700E87FAE /* Main.storyboard */; };
 		17BE51BE1B70F42700E87FAE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17BE51BD1B70F42700E87FAE /* Images.xcassets */; };
@@ -71,6 +75,10 @@
 		179D9F401B72509B008E8FD9 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		179D9F481B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		179D9F491B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageTitleSubtitleTableViewCell.xib; sourceTree = "<group>"; };
+		17BE01221B7BD27500BE5683 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		17BE01231B7BD27500BE5683 /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
+		17BE01281B7BD38300BE5683 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		17BE01291B7BD38300BE5683 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
 		17BE51AF1B70F42700E87FAE /* movieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BE51B31B70F42700E87FAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17BE51B41B70F42700E87FAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +134,8 @@
 				17017DCF1B792D68004BE7A6 /* Cells */,
 				17017DBC1B78FA60004BE7A6 /* MovieViewController.swift */,
 				17017DBD1B78FA60004BE7A6 /* MovieViewController.xib */,
+				17BE01221B7BD27500BE5683 /* ReviewViewController.swift */,
+				17BE01231B7BD27500BE5683 /* ReviewViewController.xib */,
 			);
 			name = "Single Movie View";
 			sourceTree = "<group>";
@@ -159,6 +169,8 @@
 				17017DC81B7923A5004BE7A6 /* ClearHeaderTableViewCell.xib */,
 				17017DCB1B792766004BE7A6 /* MovieDescriptionTableViewCell.swift */,
 				17017DCC1B792766004BE7A6 /* MovieDescriptionTableViewCell.xib */,
+				17BE01281B7BD38300BE5683 /* ReviewTableViewCell.swift */,
+				17BE01291B7BD38300BE5683 /* ReviewTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -375,6 +387,7 @@
 				17017DBB1B7554B6004BE7A6 /* MovieCollectionViewCell.xib in Resources */,
 				17BE51BC1B70F42700E87FAE /* Main.storyboard in Resources */,
 				17DF96361B7B838B00BD76BB /* SearchViewController.xib in Resources */,
+				17BE012B1B7BD38300BE5683 /* ReviewTableViewCell.xib in Resources */,
 				178174E41B7A2A7800A28875 /* CollectionViewTableViewCell.xib in Resources */,
 				17BE51C11B70F42700E87FAE /* LaunchScreen.xib in Resources */,
 				17017DCE1B792766004BE7A6 /* MovieDescriptionTableViewCell.xib in Resources */,
@@ -383,6 +396,7 @@
 				17017DCA1B7923A5004BE7A6 /* ClearHeaderTableViewCell.xib in Resources */,
 				17C0CEF11B7A913D00C6090C /* SimpleChevronTableViewCell.xib in Resources */,
 				17BE51BE1B70F42700E87FAE /* Images.xcassets in Resources */,
+				17BE01251B7BD27500BE5683 /* ReviewViewController.xib in Resources */,
 				179D9F4B1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,6 +471,7 @@
 				178174E61B7A2CB500A28875 /* HomeViewController.swift in Sources */,
 				17017DBE1B78FA60004BE7A6 /* MovieViewController.swift in Sources */,
 				17BE51B51B70F42700E87FAE /* AppDelegate.swift in Sources */,
+				17BE01241B7BD27500BE5683 /* ReviewViewController.swift in Sources */,
 				17C0CEF01B7A913D00C6090C /* SimpleChevronTableViewCell.swift in Sources */,
 				17017DC91B7923A5004BE7A6 /* ClearHeaderTableViewCell.swift in Sources */,
 				175A2D9E1B712D9A00B1F332 /* MovieImporter.swift in Sources */,
@@ -466,6 +481,7 @@
 				17017DBA1B7554B6004BE7A6 /* MovieCollectionViewCell.swift in Sources */,
 				178D6EEB1B72AC360044F31D /* MovieDatabaseAuthenticator.swift in Sources */,
 				177CC6171B79418400F47A76 /* SimpleHeaderView.swift in Sources */,
+				17BE012A1B7BD38300BE5683 /* ReviewTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
