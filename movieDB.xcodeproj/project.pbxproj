@@ -28,7 +28,6 @@
 		179D9F4A1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179D9F481B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift */; };
 		179D9F4B1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 179D9F491B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib */; };
 		17BE51B51B70F42700E87FAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE51B41B70F42700E87FAE /* AppDelegate.swift */; };
-		17BE51B71B70F42700E87FAE /* SearchMovieTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE51B61B70F42700E87FAE /* SearchMovieTableViewController.swift */; };
 		17BE51BC1B70F42700E87FAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17BE51BA1B70F42700E87FAE /* Main.storyboard */; };
 		17BE51BE1B70F42700E87FAE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17BE51BD1B70F42700E87FAE /* Images.xcassets */; };
 		17BE51C11B70F42700E87FAE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BE51BF1B70F42700E87FAE /* LaunchScreen.xib */; };
@@ -36,6 +35,8 @@
 		17BE51D81B70F79300E87FAE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE51D71B70F79300E87FAE /* NetworkManager.swift */; };
 		17C0CEF01B7A913D00C6090C /* SimpleChevronTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0CEEE1B7A913D00C6090C /* SimpleChevronTableViewCell.swift */; };
 		17C0CEF11B7A913D00C6090C /* SimpleChevronTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17C0CEEF1B7A913D00C6090C /* SimpleChevronTableViewCell.xib */; };
+		17DF96351B7B838B00BD76BB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF96331B7B838B00BD76BB /* SearchViewController.swift */; };
+		17DF96361B7B838B00BD76BB /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DF96341B7B838B00BD76BB /* SearchViewController.xib */; };
 		21C8AFA4620EF4F916EB7718 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A801F41F8C9AC6E7899D49B1 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -73,7 +74,6 @@
 		17BE51AF1B70F42700E87FAE /* movieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = movieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BE51B31B70F42700E87FAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17BE51B41B70F42700E87FAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		17BE51B61B70F42700E87FAE /* SearchMovieTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieTableViewController.swift; sourceTree = "<group>"; };
 		17BE51BB1B70F42700E87FAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		17BE51BD1B70F42700E87FAE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		17BE51C01B70F42700E87FAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -83,6 +83,8 @@
 		17BE51D71B70F79300E87FAE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		17C0CEEE1B7A913D00C6090C /* SimpleChevronTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleChevronTableViewCell.swift; sourceTree = "<group>"; };
 		17C0CEEF1B7A913D00C6090C /* SimpleChevronTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleChevronTableViewCell.xib; sourceTree = "<group>"; };
+		17DF96331B7B838B00BD76BB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		17DF96341B7B838B00BD76BB /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		29FFB46DF1DF5DB7FE29D971 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		61CD3AE41334E34858E20133 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A801F41F8C9AC6E7899D49B1 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,8 @@
 			children = (
 				17017DD11B792D88004BE7A6 /* Cells */,
 				178174E51B7A2CB500A28875 /* HomeViewController.swift */,
+				17DF96331B7B838B00BD76BB /* SearchViewController.swift */,
+				17DF96341B7B838B00BD76BB /* SearchViewController.xib */,
 			);
 			name = MainViewController;
 			sourceTree = "<group>";
@@ -159,13 +163,6 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		17017DD01B792D7E004BE7A6 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
 		17017DD11B792D88004BE7A6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,19 +196,9 @@
 			children = (
 				17017DAF1B754F11004BE7A6 /* MainViewController */,
 				176EF4E31B73A9F7007CCEBD /* Login */,
-				179D9F431B72602B008E8FD9 /* Movie Search */,
 				17017DC01B78FA65004BE7A6 /* Single Movie View */,
 			);
 			name = Features;
-			sourceTree = "<group>";
-		};
-		179D9F431B72602B008E8FD9 /* Movie Search */ = {
-			isa = PBXGroup;
-			children = (
-				17017DD01B792D7E004BE7A6 /* Cells */,
-				17BE51B61B70F42700E87FAE /* SearchMovieTableViewController.swift */,
-			);
-			name = "Movie Search";
 			sourceTree = "<group>";
 		};
 		17BE51A61B70F42700E87FAE = {
@@ -387,6 +374,7 @@
 			files = (
 				17017DBB1B7554B6004BE7A6 /* MovieCollectionViewCell.xib in Resources */,
 				17BE51BC1B70F42700E87FAE /* Main.storyboard in Resources */,
+				17DF96361B7B838B00BD76BB /* SearchViewController.xib in Resources */,
 				178174E41B7A2A7800A28875 /* CollectionViewTableViewCell.xib in Resources */,
 				17BE51C11B70F42700E87FAE /* LaunchScreen.xib in Resources */,
 				17017DCE1B792766004BE7A6 /* MovieDescriptionTableViewCell.xib in Resources */,
@@ -473,10 +461,10 @@
 				17017DC91B7923A5004BE7A6 /* ClearHeaderTableViewCell.swift in Sources */,
 				175A2D9E1B712D9A00B1F332 /* MovieImporter.swift in Sources */,
 				1708459A1B75369E0000A9F0 /* LoginViewController.swift in Sources */,
+				17DF96351B7B838B00BD76BB /* SearchViewController.swift in Sources */,
 				179D9F4A1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift in Sources */,
 				17017DBA1B7554B6004BE7A6 /* MovieCollectionViewCell.swift in Sources */,
 				178D6EEB1B72AC360044F31D /* MovieDatabaseAuthenticator.swift in Sources */,
-				17BE51B71B70F42700E87FAE /* SearchMovieTableViewController.swift in Sources */,
 				177CC6171B79418400F47A76 /* SimpleHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

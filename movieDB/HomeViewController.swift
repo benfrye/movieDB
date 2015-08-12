@@ -8,7 +8,14 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class HomeViewController:
+    UIViewController,
+    UITableViewDataSource,
+    UITableViewDelegate,
+    UICollectionViewDataSource,
+    UICollectionViewDelegate,
+    UISearchBarDelegate
+{
     
     enum TableSections: Int {
         case NewReleases
@@ -19,6 +26,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var tableView: UITableView!
     var tableViewDataSource: [UICollectionView]?
+    let searchBar = UISearchBar()
+    let searchViewController = SearchViewController()
     
     var newReleasesDataSource: [Movie]?
     var comingSoonDataSource: [Movie]?
@@ -27,11 +36,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        configureNavBar()
+        configureTableView()
+        configureSearchView()
+    }
+    
+    func configureNavBar() {
+        
         edgesForExtendedLayout = UIRectEdge.None
-        setupTableView()
+        
+        searchBar.delegate = self
+        searchBar.placeholder = "Search Movies"
+        navigationItem.titleView = searchBar
     }
 
-    func setupTableView() {
+    func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -41,6 +61,55 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         updateNewReleases()
         updateComingSoon()
         updatePopular()
+    }
+    
+    func configureSearchView() {
+        addChildViewController(searchViewController)
+        let searchView = searchViewController.view
+        searchView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(searchView)
+        
+        let trailingConstraint = NSLayoutConstraint(
+            item: searchView,
+            attribute: NSLayoutAttribute.Trailing,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: searchView.superview,
+            attribute: NSLayoutAttribute.Trailing,
+            multiplier: 1.0,
+            constant: 0.0)
+        
+        let leadingConstraint = NSLayoutConstraint(
+            item: searchView,
+            attribute: NSLayoutAttribute.Leading,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: searchView.superview,
+            attribute: NSLayoutAttribute.Leading,
+            multiplier: 1.0,
+            constant: 0.0)
+        
+        let bottomConstraint = NSLayoutConstraint(
+            item: searchView,
+            attribute: NSLayoutAttribute.Bottom,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: tableView,
+            attribute: NSLayoutAttribute.Top,
+            multiplier: 1.0,
+            constant: 0.0)
+        
+        let heightConstraint = NSLayoutConstraint(
+            item: searchView,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: nil,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 1.0,
+            constant: view.frame.size.height)
+        
+        searchView.superview?.addConstraint(trailingConstraint)
+        searchView.superview?.addConstraint(leadingConstraint)
+        searchView.superview?.addConstraint(bottomConstraint)
+        searchView.addConstraint(heightConstraint)
+        searchViewController.openingConstraint = bottomConstraint
     }
     
     func updateNewReleases() {
@@ -198,5 +267,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             movieViewController.movie = dataSource[indexPath.row]
             navigationController?.pushViewController(movieViewController, animated: true)
         }
+    }
+    
+// MARK: UISearchBarDelegate Methods
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        searchViewController.loadSearch(searchBar.text)
+        searchViewController.openSearchView()
     }
 }

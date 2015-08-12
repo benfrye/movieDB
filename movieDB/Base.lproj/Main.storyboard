@@ -2,57 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WDo-jR-y6H">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Search Movie Table View Controller-->
-        <scene sceneID="hNz-n2-bh7">
-            <objects>
-                <viewController id="9pv-A4-QxB" customClass="SearchMovieTableViewController" customModule="movieDB" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
-                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search Films" translatesAutoresizingMaskIntoConstraints="NO" id="QTe-XJ-smG">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="elU-Ec-EbL">
-                                <rect key="frame" x="0.0" y="108" width="580" height="443"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="elU-Ec-EbL" secondAttribute="trailing" id="23b-TW-JcR"/>
-                            <constraint firstItem="QTe-XJ-smG" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="6wg-cD-wsv"/>
-                            <constraint firstItem="elU-Ec-EbL" firstAttribute="top" secondItem="QTe-XJ-smG" secondAttribute="bottom" id="ERe-8F-f13"/>
-                            <constraint firstItem="QTe-XJ-smG" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailing" id="cgM-iS-NcT"/>
-                            <constraint firstItem="QTe-XJ-smG" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="g31-fJ-NyN"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="elU-Ec-EbL" secondAttribute="bottom" id="hFS-gv-ZyK"/>
-                            <constraint firstItem="QTe-XJ-smG" firstAttribute="leading" secondItem="elU-Ec-EbL" secondAttribute="trailing" id="hkN-AG-Otb"/>
-                            <constraint firstItem="elU-Ec-EbL" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="p8d-e5-Jma"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="hkN-AG-Otb"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" id="UEq-bc-qeR"/>
-                    <connections>
-                        <outlet property="searchBar" destination="QTe-XJ-smG" id="shM-Fk-2e4"/>
-                        <outlet property="tableView" destination="elU-Ec-EbL" id="Kd3-A2-RBI"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1472" y="-363"/>
-        </scene>
         <!--Home View Controller-->
         <scene sceneID="Azf-LB-6bh">
             <objects>
@@ -85,7 +36,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="td0-Ne-s1l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1472" y="362"/>
+            <point key="canvasLocation" x="1448" y="0.0"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="oXv-mJ-ZBl">
@@ -181,7 +132,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="VFP-9m-vV9" kind="relationship" relationship="viewControllers" id="NbH-vh-bk6"/>
-                        <segue destination="eZk-i3-Gfw" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -205,26 +155,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="516-EX-gLQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="716" y="362"/>
-        </scene>
-        <!--Search Films-->
-        <scene sceneID="1Tv-Ol-GaB">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eZk-i3-Gfw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search Films" image="first" id="acW-dT-cKf" userLabel="Search Films"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ovg-Ek-6s4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="IY4-kM-DRP"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tKq-wz-tq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="716" y="-363"/>
+            <point key="canvasLocation" x="724" y="0.0"/>
         </scene>
     </scenes>
     <resources>
