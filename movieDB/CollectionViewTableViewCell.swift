@@ -17,6 +17,7 @@ class CollectionViewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         
         super.awakeFromNib()
+        collectionView.registerNib(UINib(nibName: MovieCollectionViewCell.className, bundle: nil), forCellWithReuseIdentifier: MovieCollectionViewCell.className)
     }
     
 }

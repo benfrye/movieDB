@@ -152,6 +152,10 @@
 		17017DC41B791151004BE7A6 /* Common Cells */ = {
 			isa = PBXGroup;
 			children = (
+				17017DB81B7554B6004BE7A6 /* MovieCollectionViewCell.swift */,
+				17017DB91B7554B6004BE7A6 /* MovieCollectionViewCell.xib */,
+				178174E11B7A2A7800A28875 /* CollectionViewTableViewCell.swift */,
+				178174E21B7A2A7800A28875 /* CollectionViewTableViewCell.xib */,
 				179D9F481B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift */,
 				179D9F491B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib */,
 				177CC6161B79418400F47A76 /* SimpleHeaderView.swift */,
@@ -178,10 +182,6 @@
 		17017DD11B792D88004BE7A6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				17017DB81B7554B6004BE7A6 /* MovieCollectionViewCell.swift */,
-				17017DB91B7554B6004BE7A6 /* MovieCollectionViewCell.xib */,
-				178174E11B7A2A7800A28875 /* CollectionViewTableViewCell.swift */,
-				178174E21B7A2A7800A28875 /* CollectionViewTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";

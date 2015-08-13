@@ -240,9 +240,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if let dataSource = dataSource {
             
-            let movieViewController = MovieViewController()
-            movieViewController.movie = dataSource[indexPath.row]
-            navigationController?.pushViewController(movieViewController, animated: true)
+            let movie = dataSource[indexPath.row]
+            movie.fullyCache({ () -> Void in
+                let movieViewController = MovieViewController()
+                movieViewController.movie = movie
+                self.navigationController?.pushViewController(movieViewController, animated: true)
+            })
         }
     }
 

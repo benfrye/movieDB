@@ -6,8 +6,8 @@
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HelveticaNeueLights.ttc">
-            <string>HelveticaNeue-Thin</string>
             <string>HelveticaNeue-UltraLight</string>
+            <string>HelveticaNeue-Thin</string>
             <string>HelveticaNeue-UltraLight</string>
         </mutableArray>
     </customFonts>

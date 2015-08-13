@@ -159,15 +159,15 @@ class HomeViewController:
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 39
+        return 39.0
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 128
+        return 128.0
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 128
+        return 128.0
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -176,7 +176,6 @@ class HomeViewController:
             
             collectionViewTableViewCell.collectionView.delegate = self
             collectionViewTableViewCell.collectionView.dataSource = self
-            collectionViewTableViewCell.collectionView.registerNib(UINib(nibName: MovieCollectionViewCell.className, bundle: nil), forCellWithReuseIdentifier: MovieCollectionViewCell.className)
             
             return collectionViewTableViewCell
         }
@@ -235,11 +234,9 @@ class HomeViewController:
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let collectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.className, forIndexPath: indexPath) as? MovieCollectionViewCell
-        
         if
             let dataSource = dataSourceForCollectionView(collectionView),
-            let collectionViewCell = collectionViewCell
+            let collectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.className, forIndexPath: indexPath) as? MovieCollectionViewCell
         {
             collectionViewCell.movie = dataSource[indexPath.row]
             dataSource[indexPath.row].poster { (posterImage) -> Void in
@@ -276,9 +273,12 @@ class HomeViewController:
         
         if let dataSource = dataSourceForCollectionView(collectionView) {
             
-            let movieViewController = MovieViewController()
-            movieViewController.movie = dataSource[indexPath.row]
-            navigationController?.pushViewController(movieViewController, animated: true)
+            let movie = dataSource[indexPath.row]
+            movie.fullyCache({ () -> Void in
+                let movieViewController = MovieViewController()
+                movieViewController.movie = movie
+                self.navigationController?.pushViewController(movieViewController, animated: true)
+            })
         }
     }
     

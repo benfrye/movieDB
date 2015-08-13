@@ -21,6 +21,7 @@ class Movie: NSObject {
     let plotDescription: String?
     let releaseDate: NSDate?
     let posterPath: String?
+    
     var cachedPoster: UIImage?
     var cachedBackdrop: UIImage?
     var cachedCrew: [Crew]?
@@ -28,6 +29,7 @@ class Movie: NSObject {
     var cachedDirector: Crew?
     var cachedWriters: [Crew]?
     var cachedReviews: [Review]?
+    var cachedSimilarMovies: [Movie]?
     
     init(movieID: Int, title: String, plotDescription: String?, releaseDate: NSDate?, posterPath: String?) {
         
@@ -36,6 +38,61 @@ class Movie: NSObject {
         self.plotDescription = plotDescription
         self.releaseDate = releaseDate
         self.posterPath = posterPath
+    }
+    
+    func fullyCache(completion: () -> Void) {
+
+        var completionCalled = false
+        let cachables: [Any] = [cachedPoster, cachedBackdrop, cachedCrew, cachedCast, cachedReviews, cachedSimilarMovies]
+        
+        var cached = 0
+        poster { (_) -> Void in
+            cached++
+            if cached == cachables.count && !completionCalled {
+                completionCalled = true
+                completion()
+            }
+        }
+        
+        backdrop { (_) -> Void in
+            cached++
+            if cached == cachables.count &&  !completionCalled {
+                completionCalled = true
+                completion()
+            }
+        }
+        
+        crew { (_) -> Void in
+            cached++
+            if cached == cachables.count &&  !completionCalled {
+                completionCalled = true
+                completion()
+            }
+        }
+        
+        cast { (_) -> Void in
+            cached++
+            if cached == cachables.count &&  !completionCalled {
+                completionCalled = true
+                completion()
+            }
+        }
+        
+        reviews { (_) -> Void in
+            cached++
+            if cached == cachables.count &&  !completionCalled {
+                completionCalled = true
+                completion()
+            }
+        }
+        
+        similarMovies { (_) -> Void in
+            cached++
+            if cached == cachables.count &&  !completionCalled {
+                completionCalled = true
+                completion()
+            }
+        }
     }
     
     func poster(completion: (UIImage?) -> Void) {
@@ -74,12 +131,23 @@ class Movie: NSObject {
         }
     }
     
-    func populateCastAndCrew(completion: () -> Void) {
+    private func populateCastAndCrew(completion: () -> Void) {
         
         MovieImporter.sharedInstance.castAndCrewForMovieID(movieID) { (cast, crew) -> Void in
             self.cachedCast = cast
             self.cachedCrew = crew
             completion()
+        }
+    }
+    
+    func cast(completion: ([Cast]?) -> Void) {
+        
+        if let cachedCast = cachedCast {
+            completion(cachedCast)
+        } else {
+            populateCastAndCrew({ () -> Void in
+                completion(self.cachedCast)
+            })
         }
     }
     
@@ -120,17 +188,6 @@ class Movie: NSObject {
         }
     }
     
-    func cast(completion: ([Cast]?) -> Void) {
-        
-        if let cachedCast = cachedCast {
-            completion(cachedCast)
-        } else {
-            populateCastAndCrew({ () -> Void in
-                completion(self.cachedCast)
-            })
-        }
-    }
-    
     func cacheSpecialCrew(completion: (() -> Void)?) {
         
         crew({ (crewArray) -> Void in
@@ -166,6 +223,21 @@ class Movie: NSObject {
                 self.cachedReviews = reviews
                 completion(reviews)
             }
+        }
+    }
+    
+    func similarMovies(completion: ([Movie]?) -> Void) {
+        
+        if let cachedSimilarMovies = cachedSimilarMovies {
+            
+            completion(cachedSimilarMovies)
+            
+        } else {
+            
+            MovieImporter.sharedInstance.similarMoviesForMovieID(movieID, completion: { (movies) -> Void in
+                self.cachedSimilarMovies = movies
+                completion(movies)
+            })
         }
     }
 }

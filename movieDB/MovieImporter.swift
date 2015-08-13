@@ -25,9 +25,13 @@ class MovieImporter {
         NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (_, _, response) -> Void in
             
             if let data = response.value {
+                
                 let JSONData = JSON(data)
                 let movieArray = self.processMovieData(JSONData)
                 completion(movieArray)
+                
+            } else {
+                completion([Movie]())
             }
         }
     }
@@ -76,6 +80,12 @@ class MovieImporter {
         submitMovieRequest(searchRoute, completion: completion)
     }
     
+    func similarMoviesForMovieID(movieID: Int, completion: ([Movie]) -> Void) {
+        
+        let searchRoute = "\(NetworkManager.baseRoute)/movie/\(movieID)/similar"
+        submitMovieRequest(searchRoute, completion: completion)
+    }
+    
     func searchTitle(title: String, completion: ([Movie]) -> Void) {
         
         let searchRoute = "\(NetworkManager.baseRoute)/search/movie"
@@ -83,9 +93,13 @@ class MovieImporter {
         NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute, parameters: parameters) { (_, _, response) -> Void in
             
             if let data = response.value {
+                
                 let JSONData = JSON(data)
                 let movieArray = self.processMovieData(JSONData)
                 completion(movieArray)
+                
+            } else {
+                completion([Movie]())
             }
         }
     }
@@ -95,9 +109,9 @@ class MovieImporter {
         let searchRoute = "\(NetworkManager.posterBaseRoute)\(imagePath)"
         NetworkManager.sharedNetworkManager.submitRequest(searchRoute, completion: { (_, _, data) -> Void in
             if let data = data as? NSData {
-                
                 completion(UIImage(data: data, scale: 1.0))
-                
+            } else {
+                completion(nil)
             }
         })
     }
@@ -113,6 +127,10 @@ class MovieImporter {
                 let backdropURL = backdrops[0]["file_path"] as? String
             {
                 self.imageForPath(backdropURL, completion: completion)
+            }
+            else
+            {
+                completion(nil)
             }
         }
     }
@@ -156,6 +174,9 @@ class MovieImporter {
                 }
                 
                 completion(cast: cast, crew: crew)
+                
+            } else {
+                completion(cast: nil, crew: nil)
             }
         }
     }
