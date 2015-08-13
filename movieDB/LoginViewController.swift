@@ -32,7 +32,10 @@ class LoginViewController: UIViewController {
                 
                 if success {
                     
-                    self.performSegueWithIdentifier("loginSegue", sender: self)
+                    let navigationController = UINavigationController()
+                    let homeViewController = HomeViewController()
+                    navigationController.viewControllers = [homeViewController]
+                    self.presentViewController(navigationController, animated: true, completion: nil)
                 
                 } else {
                     

@@ -24,6 +24,7 @@
 		178174E41B7A2A7800A28875 /* CollectionViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178174E21B7A2A7800A28875 /* CollectionViewTableViewCell.xib */; };
 		178174E61B7A2CB500A28875 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178174E51B7A2CB500A28875 /* HomeViewController.swift */; };
 		178D6EEB1B72AC360044F31D /* MovieDatabaseAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178D6EEA1B72AC360044F31D /* MovieDatabaseAuthenticator.swift */; };
+		178EDB261B7CE94700A5CD7E /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178EDB251B7CE94700A5CD7E /* HomeViewController.xib */; };
 		179D9F411B72509B008E8FD9 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179D9F401B72509B008E8FD9 /* Movie.swift */; };
 		179D9F4A1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179D9F481B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift */; };
 		179D9F4B1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 179D9F491B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib */; };
@@ -72,6 +73,7 @@
 		178174E21B7A2A7800A28875 /* CollectionViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewTableViewCell.xib; sourceTree = "<group>"; };
 		178174E51B7A2CB500A28875 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		178D6EEA1B72AC360044F31D /* MovieDatabaseAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDatabaseAuthenticator.swift; sourceTree = "<group>"; };
+		178EDB251B7CE94700A5CD7E /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		179D9F401B72509B008E8FD9 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		179D9F481B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		179D9F491B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageTitleSubtitleTableViewCell.xib; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			children = (
 				17017DD11B792D88004BE7A6 /* Cells */,
 				178174E51B7A2CB500A28875 /* HomeViewController.swift */,
+				178EDB251B7CE94700A5CD7E /* HomeViewController.xib */,
 				17DF96331B7B838B00BD76BB /* SearchViewController.swift */,
 				17DF96341B7B838B00BD76BB /* SearchViewController.xib */,
 			);
@@ -386,6 +389,7 @@
 			files = (
 				17017DBB1B7554B6004BE7A6 /* MovieCollectionViewCell.xib in Resources */,
 				17BE51BC1B70F42700E87FAE /* Main.storyboard in Resources */,
+				178EDB261B7CE94700A5CD7E /* HomeViewController.xib in Resources */,
 				17DF96361B7B838B00BD76BB /* SearchViewController.xib in Resources */,
 				17BE012B1B7BD38300BE5683 /* ReviewTableViewCell.xib in Resources */,
 				178174E41B7A2A7800A28875 /* CollectionViewTableViewCell.xib in Resources */,
