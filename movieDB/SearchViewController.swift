@@ -110,7 +110,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         var constant = openingConstraint.constant
-        let min = openHeight()// + parentViewController.topLayoutGuide.length
+        let min = openHeight()
 
         switch gesture.state {
         case UIGestureRecognizerState.Changed:

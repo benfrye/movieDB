@@ -172,7 +172,10 @@ class Movie: NSObject {
             var specialCrew = [cachedDirector]
             specialCrew += cachedWriters
             completion(specialCrew)
-        } else {
+            
+        }
+        else
+        {
             cacheSpecialCrew({ () -> Void in
                 if
                     let cachedDirector = self.cachedDirector,
@@ -196,10 +199,13 @@ class Movie: NSObject {
                 var writers = [Crew]()
                 for crewMember in crewArray{
                     
-                    if crewMember.job == "Director" {
+                    switch crewMember.job {
+                    case "Director":
                         self.cachedDirector = crewMember
-                    } else if crewMember.job == "Screenplay" {
+                    case "Screenplay":
                         writers.append(crewMember)
+                    default:
+                        continue
                     }
                     
                 }
@@ -238,6 +244,12 @@ class Movie: NSObject {
                 self.cachedSimilarMovies = movies
                 completion(movies)
             })
+        }
+    }
+    
+    func videos(completion: ([Any]?) -> Void) {
+        MovieImporter.sharedInstance.videosForMovieID(movieID) { () -> Void in
+            
         }
     }
 }

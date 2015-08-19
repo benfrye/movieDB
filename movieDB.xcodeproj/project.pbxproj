@@ -25,6 +25,8 @@
 		178174E61B7A2CB500A28875 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178174E51B7A2CB500A28875 /* HomeViewController.swift */; };
 		178D6EEB1B72AC360044F31D /* MovieDatabaseAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178D6EEA1B72AC360044F31D /* MovieDatabaseAuthenticator.swift */; };
 		178EDB261B7CE94700A5CD7E /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178EDB251B7CE94700A5CD7E /* HomeViewController.xib */; };
+		178EDB2C1B7E297A00A5CD7E /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EDB2A1B7E297A00A5CD7E /* VideoPlayerViewController.swift */; };
+		178EDB2D1B7E297A00A5CD7E /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178EDB2B1B7E297A00A5CD7E /* VideoPlayerViewController.xib */; };
 		179D9F411B72509B008E8FD9 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179D9F401B72509B008E8FD9 /* Movie.swift */; };
 		179D9F4A1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179D9F481B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift */; };
 		179D9F4B1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 179D9F491B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib */; };
@@ -74,6 +76,8 @@
 		178174E51B7A2CB500A28875 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		178D6EEA1B72AC360044F31D /* MovieDatabaseAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDatabaseAuthenticator.swift; sourceTree = "<group>"; };
 		178EDB251B7CE94700A5CD7E /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		178EDB2A1B7E297A00A5CD7E /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		178EDB2B1B7E297A00A5CD7E /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		179D9F401B72509B008E8FD9 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		179D9F481B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		179D9F491B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageTitleSubtitleTableViewCell.xib; sourceTree = "<group>"; };
@@ -197,6 +201,15 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		178EDB271B7E294D00A5CD7E /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				178EDB2A1B7E297A00A5CD7E /* VideoPlayerViewController.swift */,
+				178EDB2B1B7E297A00A5CD7E /* VideoPlayerViewController.xib */,
+			);
+			name = VideoPlayer;
+			sourceTree = "<group>";
+		};
 		179D9F3F1B725083008E8FD9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +222,7 @@
 		179D9F421B726027008E8FD9 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				178EDB271B7E294D00A5CD7E /* VideoPlayer */,
 				17017DAF1B754F11004BE7A6 /* MainViewController */,
 				176EF4E31B73A9F7007CCEBD /* Login */,
 				17017DC01B78FA65004BE7A6 /* Single Movie View */,
@@ -388,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17017DBB1B7554B6004BE7A6 /* MovieCollectionViewCell.xib in Resources */,
+				178EDB2D1B7E297A00A5CD7E /* VideoPlayerViewController.xib in Resources */,
 				17BE51BC1B70F42700E87FAE /* Main.storyboard in Resources */,
 				178EDB261B7CE94700A5CD7E /* HomeViewController.xib in Resources */,
 				17DF96361B7B838B00BD76BB /* SearchViewController.xib in Resources */,
@@ -484,6 +499,7 @@
 				179D9F4A1B726103008E8FD9 /* ImageTitleSubtitleTableViewCell.swift in Sources */,
 				17017DBA1B7554B6004BE7A6 /* MovieCollectionViewCell.swift in Sources */,
 				178D6EEB1B72AC360044F31D /* MovieDatabaseAuthenticator.swift in Sources */,
+				178EDB2C1B7E297A00A5CD7E /* VideoPlayerViewController.swift in Sources */,
 				177CC6171B79418400F47A76 /* SimpleHeaderView.swift in Sources */,
 				17BE012A1B7BD38300BE5683 /* ReviewTableViewCell.swift in Sources */,
 			);

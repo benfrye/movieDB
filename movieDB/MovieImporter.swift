@@ -41,9 +41,10 @@ class MovieImporter {
         var movieArray: [Movie] = []
         for (_, subJson) in JSONData["results"] {
             
-            if let movieID = subJson["id"].int,
-                let title = subJson["title"].string {
-                    
+            if
+                let movieID = subJson["id"].int,
+                let title = subJson["title"].string
+            {
                     var releaseDate: NSDate?
                     if let dateString = subJson["release_date"].string {
                         releaseDate = self.dateFormatter.dateFromString(dateString)
@@ -201,6 +202,19 @@ class MovieImporter {
             } else {
                 
                 completion(nil)
+            }
+        }
+    }
+    
+    func videosForMovieID(movieID: Int, completion: () -> Void) {
+        
+        let searchRoute = "\(NetworkManager.baseRoute)/movie/\(movieID)/videos"
+        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (_, _, response) -> Void in
+            
+            if let data = response.value {
+                
+                let JSONData = JSON(data)
+                print(JSONData, appendNewline: true)
             }
         }
     }

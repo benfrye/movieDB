@@ -22,6 +22,7 @@ class Member {
     }
     
     func profileImage(completion: (UIImage?) -> Void ) {
+        
         if let profileImage = cachedProfileImage {
             
             completion(profileImage)

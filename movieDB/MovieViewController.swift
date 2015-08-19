@@ -16,7 +16,7 @@ class MovieViewController:
     UICollectionViewDelegate
 {
     
-    enum TableSections: Int {
+    private enum TableSections: Int {
         case Header
         case Detail
         case Reviews
@@ -41,6 +41,9 @@ class MovieViewController:
         super.viewDidLoad()
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         configureView()
+        movie?.videos({ (_: [Any]?) -> Void in
+            
+        })
     }
     
     func configureView() {
@@ -90,22 +93,22 @@ class MovieViewController:
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var numberOfRows: Int?
+        let numberOfRows: Int?
         
-        switch section {
+        if let switchSection = TableSections(rawValue: section) {
             
-        case TableSections.Cast.rawValue:
-            numberOfRows = self.castDataSource?.count
+            switch switchSection {
+            case .Cast:
+                numberOfRows = self.castDataSource?.count
+            case .Crew:
+                numberOfRows = self.crewDataSource?.count
+            default:
+                numberOfRows = 1
+            }
             
-        case TableSections.Crew.rawValue:
-            numberOfRows = self.crewDataSource?.count
-            
-        default:
-            numberOfRows = 1
-        }
-        
-        if let numberOfRows = numberOfRows {
-            return numberOfRows
+            if let numberOfRows = numberOfRows {
+                return numberOfRows
+            }
         }
         return 0
     }
@@ -115,98 +118,102 @@ class MovieViewController:
         var cell = UITableViewCell()
         cell.contentView.backgroundColor = UIColor.whiteColor()
         
-        switch indexPath.section {
-        case TableSections.Header.rawValue:
-            if let headerCell = tableView.dequeueReusableCellWithIdentifier(ClearHeaderTableViewCell.className) {
-                cell = headerCell
-            }
-            
-        case TableSections.Detail.rawValue:
-            if let detailCell = tableView.dequeueReusableCellWithIdentifier(MovieDescriptionTableViewCell.className) as? MovieDescriptionTableViewCell {
-
-                if let releaseDate = movie?.releaseDate {
-                    detailCell.dateLabel.text = dateFormatter.stringFromDate(releaseDate)
+        if let switchSection = TableSections(rawValue: indexPath.section) {
+           
+            switch switchSection {
+            case .Header:
+                if let headerCell = tableView.dequeueReusableCellWithIdentifier(ClearHeaderTableViewCell.className) {
+                    cell = headerCell
                 }
-                detailCell.titleLabel.text = movie?.title
-                detailCell.descriptionLabel.text = movie?.plotDescription
-                cell = detailCell
-            }
-            
-        case TableSections.Reviews.rawValue:
-            if let reviewCell = tableView.dequeueReusableCellWithIdentifier(SimpleChevronTableViewCell.className) as? SimpleChevronTableViewCell {
                 
-                reviewCell.titleLabel.text = "Reviews"
-                reviewCell.setSelectable(false)
-                movie?.reviews({ (reviews) -> Void in
-                    if let reviews = reviews where reviews.count > 0 {
-                        reviewCell.setSelectable(true)
+            case .Detail:
+                if let detailCell = tableView.dequeueReusableCellWithIdentifier(MovieDescriptionTableViewCell.className) as? MovieDescriptionTableViewCell {
+                    
+                    if let releaseDate = movie?.releaseDate {
+                        detailCell.dateLabel.text = dateFormatter.stringFromDate(releaseDate)
                     }
-                })
+                    detailCell.titleLabel.text = movie?.title
+                    detailCell.descriptionLabel.text = movie?.plotDescription
+                    cell = detailCell
+                }
                 
-                cell = reviewCell
-            }
-            
-        case TableSections.Cast.rawValue:
-            if
-                let castCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell,
-                let dataSource = castDataSource
-            {
-                let castMember = dataSource[indexPath.row]
-                castCell.titleLabel.text = castMember.name
-                castCell.subtitleLabel.text = castMember.characterName
-                castMember.profileImage({ (profileImage) -> Void in
+            case .Reviews:
+                if let reviewCell = tableView.dequeueReusableCellWithIdentifier(SimpleChevronTableViewCell.className) as? SimpleChevronTableViewCell {
                     
-                    //don't change the image if this cell has been recycled
-                    if
-                        castCell.titleLabel.text == castMember.name,
-                        let profileImage = profileImage
-                    {
-                        castCell.thumbnailImageView.image = profileImage
-                    }
-                    else
-                    {
-                        castCell.noPhotoLabel.hidden = false
-                    }
+                    reviewCell.titleLabel.text = "Reviews"
+                    reviewCell.setSelectable(false)
+                    movie?.reviews({ (reviews) -> Void in
+                        if let reviews = reviews where reviews.count > 0 {
+                            reviewCell.setSelectable(true)
+                        }
+                    })
                     
-                })
-                cell = castCell
+                    cell = reviewCell
+                }
+                
+            case .Cast:
+                if
+                    let castCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell,
+                    let dataSource = castDataSource
+                {
+                    let castMember = dataSource[indexPath.row]
+                    castCell.titleLabel.text = castMember.name
+                    castCell.subtitleLabel.text = castMember.characterName
+                    castMember.profileImage({ (profileImage) -> Void in
+                        
+                        //don't change the image if this cell has been recycled
+                        if
+                            castCell.titleLabel.text == castMember.name,
+                            let profileImage = profileImage
+                        {
+                            castCell.thumbnailImageView.image = profileImage
+                        }
+                        else
+                        {
+                            castCell.noPhotoLabel.hidden = false
+                        }
+                        
+                    })
+                    cell = castCell
+                }
+                
+            case .Crew:
+                if
+                    let crewCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell,
+                    let dataSource = crewDataSource
+                {
+                    let crewMember = dataSource[indexPath.row]
+                    crewCell.titleLabel.text = crewMember.name
+                    crewCell.subtitleLabel.text = crewMember.job
+                    crewMember.profileImage({ (profileImage) -> Void in
+                        
+                        //don't change the image if this cell has been recycled
+                        if
+                            crewCell.titleLabel.text == crewMember.name,
+                            let profileImage = profileImage
+                        {
+                            crewCell.thumbnailImageView.image = profileImage
+                        }
+                        else
+                        {
+                            crewCell.noPhotoLabel.hidden = false
+                        }
+                    })
+                    cell = crewCell
+                }
+                
+            case .SimilarMovies:
+                if let similarMoviesCell = tableView.dequeueReusableCellWithIdentifier(CollectionViewTableViewCell.className) as? CollectionViewTableViewCell {
+                    similarMoviesCollectionView = similarMoviesCell.collectionView
+                    similarMoviesCollectionView!.delegate = self
+                    similarMoviesCollectionView!.dataSource = self
+                    cell = similarMoviesCell
+                }
+                
+            default:
+                break
             }
-            
-        case TableSections.Crew.rawValue:
-            if
-                let crewCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell,
-                let dataSource = crewDataSource
-            {
-                let crewMember = dataSource[indexPath.row]
-                crewCell.titleLabel.text = crewMember.name
-                crewCell.subtitleLabel.text = crewMember.job
-                crewMember.profileImage({ (profileImage) -> Void in
-                    
-                    //don't change the image if this cell has been recycled
-                    if
-                        crewCell.titleLabel.text == crewMember.name,
-                        let profileImage = profileImage
-                    {
-                        crewCell.thumbnailImageView.image = profileImage
-                    }
-                    else
-                    {
-                        crewCell.noPhotoLabel.hidden = false
-                    }
-                })
-                cell = crewCell
-            }
-            
-        case TableSections.SimilarMovies.rawValue:
-            if let similarMoviesCell = tableView.dequeueReusableCellWithIdentifier(CollectionViewTableViewCell.className) as? CollectionViewTableViewCell {
-                similarMoviesCollectionView = similarMoviesCell.collectionView
-                similarMoviesCollectionView!.delegate = self
-                similarMoviesCollectionView!.dataSource = self
-                cell = similarMoviesCell
-            }
-            
-        default:
-            break
+
         }
         
         return cell
@@ -214,30 +221,34 @@ class MovieViewController:
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        var headerView: UIView?
+        let headerView: UIView?
         
-        switch section {
-        case TableSections.Crew.rawValue:
-            if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) as? SimpleHeaderView {
-                simpleHeaderView.titleLabel.text = "Crew"
-                headerView = simpleHeaderView
+        if let switchSection = TableSections(rawValue: section) {
+            
+            switch switchSection {
+            case .Crew:
+                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) as? SimpleHeaderView {
+                    simpleHeaderView.titleLabel.text = "Crew"
+                    headerView = simpleHeaderView
+                }
+                
+            case .Cast:
+                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) as? SimpleHeaderView {
+                    simpleHeaderView.titleLabel.text = "Cast"
+                    headerView = simpleHeaderView
+                }
+                
+            case .SimilarMovies:
+                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) as? SimpleHeaderView {
+                    simpleHeaderView.separatorView.hidden = true
+                    simpleHeaderView.titleLabel.text = "Similar Movies"
+                    headerView = simpleHeaderView
+                }
+                
+            default:
+                headerView = nil
             }
             
-        case TableSections.Cast.rawValue:
-            if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) as? SimpleHeaderView {
-                simpleHeaderView.titleLabel.text = "Cast"
-                headerView = simpleHeaderView
-            }
-            
-        case TableSections.SimilarMovies.rawValue:
-            if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) as? SimpleHeaderView {
-                simpleHeaderView.separatorView.hidden = true
-                simpleHeaderView.titleLabel.text = "Similar Movies"
-                headerView = simpleHeaderView
-            }
-            
-        default:
-            headerView = nil
         }
         
         return headerView
@@ -251,41 +262,33 @@ class MovieViewController:
     
     func heightForSection(section: Int) -> CGFloat {
         
-        switch section {
-        case TableSections.Header.rawValue:
-            if
-                let movie = movie,
-                let _ = movie.cachedBackdrop
-            {
-                return 225.0
-            }
+        if let switchSection = TableSections(rawValue: section) {
             
-        case TableSections.Cast.rawValue:
-            if
-                let movie = movie,
-                let cast = movie.cachedCast where cast.count > 0
-            {
-                return 100.0
+            switch switchSection {
+            case .Header:
+                if let _ = movie?.cachedBackdrop {
+                    return 225.0
+                }
+                
+            case .Cast:
+                if let cast = movie?.cachedCast where cast.count > 0 {
+                    return 100.0
+                }
+                
+            case .Crew:
+                if let crew = movie?.cachedCrew where crew.count > 0 {
+                    return 100.0
+                }
+                
+            case .SimilarMovies:
+                if let similarMovies = movie?.cachedSimilarMovies where similarMovies.count > 0 {
+                    return 128.0
+                }
+                
+            default:
+                return UITableViewAutomaticDimension
             }
-            
-        case TableSections.Crew.rawValue:
-            if
-                let movie = movie,
-                let crew = movie.cachedCrew where crew.count > 0
-            {
-                return 100.0
-            }
-            
-        case TableSections.SimilarMovies.rawValue:
-            if
-                let movie = movie,
-                let similarMovies = movie.cachedSimilarMovies where similarMovies.count > 0
-            {
-                return 128.0
-            }
-            
-        default:
-            return UITableViewAutomaticDimension
+
         }
         
         return 0.0
@@ -293,42 +296,43 @@ class MovieViewController:
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        switch section {
-        case TableSections.Cast.rawValue:
-            if
-                let movie = movie,
-                let cast = movie.cachedCast where cast.count > 0,
-                let view = self.tableView(tableView, viewForHeaderInSection: section)
-            {
+        if let switchSection = TableSections(rawValue: section) {
+            
+            switch switchSection {
+            case .Cast:
+                if
+                    let cast = movie?.cachedCast where cast.count > 0,
+                    let view = self.tableView(tableView, viewForHeaderInSection: section)
+                {
+                    
+                    let size = view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+                    return size.height
+                }
                 
-                let size = view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
-                return size.height
-            }
-            
-        case TableSections.Crew.rawValue:
-            if
-                let movie = movie,
-                let crew = movie.cachedCrew where crew.count > 0,
-                let view = self.tableView(tableView, viewForHeaderInSection: section)
-            {
+            case .Crew:
+                if
+                    let crew = movie?.cachedCrew where crew.count > 0,
+                    let view = self.tableView(tableView, viewForHeaderInSection: section)
+                {
+                    
+                    let size = view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+                    return size.height
+                }
                 
-                let size = view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
-                return size.height
+            case .SimilarMovies:
+                if
+                    let similarMovies = movie?.cachedSimilarMovies where similarMovies.count > 0,
+                    let view = self.tableView(tableView, viewForHeaderInSection: section)
+                {
+                    let size = view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+                    return size.height
+                }
+                
+            default:
+                break
             }
-            
-        case TableSections.SimilarMovies.rawValue:
-            if
-                let movie = movie,
-                let similarMovies = movie.cachedSimilarMovies where similarMovies.count > 0,
-                let view = self.tableView(tableView, viewForHeaderInSection: section)
-            {
-                let size = view.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
-                return size.height
-            }
-            
-        default:
-            break
         }
+        
         return CGFloat.min
     }
     
@@ -359,17 +363,19 @@ class MovieViewController:
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        switch indexPath.section {
-            
-        case TableSections.Reviews.rawValue:
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            let reviewViewController = ReviewViewController()
-            reviewViewController.movie = self.movie
-            navigationController?.pushViewController(reviewViewController, animated: true)
-            
-        default:
-            break
-            
+        if let switchSection = TableSections(rawValue: indexPath.section) {
+         
+            switch switchSection {
+            case .Reviews:
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                let reviewViewController = ReviewViewController()
+                reviewViewController.movie = self.movie
+                navigationController?.pushViewController(reviewViewController, animated: true)
+                
+            default:
+                break
+                
+            }
         }
     }
     
@@ -427,5 +433,20 @@ class MovieViewController:
         }
         
         return UICollectionViewCell()
+    }
+    
+// MARK: UICollectionViewDelegate Methods
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        if let dataSource = dataSourceForCollectionView(collectionView) {
+            
+            let movie = dataSource[indexPath.row]
+            movie.fullyCache({ () -> Void in
+                let movieViewController = MovieViewController()
+                movieViewController.movie = movie
+                self.navigationController?.pushViewController(movieViewController, animated: true)
+            })
+        }
     }
 }

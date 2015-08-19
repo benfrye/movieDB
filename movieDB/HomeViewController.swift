@@ -17,7 +17,7 @@ class HomeViewController:
     UISearchBarDelegate
 {
     
-    enum TableSections: Int {
+    private enum TableSections: Int {
         case NewReleases
         case ComingSoon
         case Popular
@@ -188,18 +188,17 @@ class HomeViewController:
             
             headerView.separatorView.hidden = true
             
-            switch section {
-            case TableSections.NewReleases.rawValue:
-                headerView.titleLabel.text = "New Releases"
-                
-            case TableSections.ComingSoon.rawValue:
-                headerView.titleLabel.text = "Coming Soon"
-                
-            case TableSections.Popular.rawValue:
-                headerView.titleLabel.text = "Popular"
-                
-            default:
-                break
+            if let switchSection = TableSections(rawValue: section) {
+                switch switchSection {
+                case .NewReleases:
+                    headerView.titleLabel.text = "New Releases"
+                case .ComingSoon:
+                    headerView.titleLabel.text = "Coming Soon"
+                case .Popular:
+                    headerView.titleLabel.text = "Popular"
+                default:
+                    break
+                }
             }
             
             return headerView
@@ -212,18 +211,17 @@ class HomeViewController:
     func dataSourceForCollectionView(collectionView: UICollectionView) -> [Movie]? {
         
         let pointInTable = collectionView.convertPoint(collectionView.bounds.origin, toView: self.tableView)
-        if let indexPath = self.tableView.indexPathForRowAtPoint(pointInTable) {
-            
-            switch indexPath.section {
-            case TableSections.NewReleases.rawValue:
+        if
+            let indexPath = self.tableView.indexPathForRowAtPoint(pointInTable),
+            let switchSection = TableSections(rawValue: indexPath.section)
+        {
+            switch switchSection {
+            case .NewReleases:
                 return newReleasesDataSource
-                
-            case TableSections.Popular.rawValue:
+            case .Popular:
                 return popularDataSource
-                
-            case TableSections.ComingSoon.rawValue:
+            case .ComingSoon:
                 return comingSoonDataSource
-                
             default:
                 return nil
             }
@@ -289,5 +287,11 @@ class HomeViewController:
         searchBar.resignFirstResponder()
         searchViewController.loadSearch(searchBar.text)
         searchViewController.openSearchView()
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.characters.count == 0 {
+            searchBar.resignFirstResponder()
+        }
     }
 }

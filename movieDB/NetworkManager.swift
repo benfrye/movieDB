@@ -28,9 +28,8 @@ class NetworkManager
     func submitJSONRequest(route: String, parameters: Dictionary<String, String>?, completion: ((NSURLRequest?, NSHTTPURLResponse?, Result<AnyObject>) -> Void)?) {
         
         var mutableParameters: Dictionary<String, String> = [:]
-        if parameters != nil
-        {
-           mutableParameters = parameters!
+        if let parameters = parameters {
+           mutableParameters = parameters
         }
         
         mutableParameters.updateValue(NetworkManager.APIKey, forKey: "api_key")
@@ -52,9 +51,8 @@ class NetworkManager
     func submitRequest(route: String, parameters: Dictionary<String, String>?, completion: ((NSURLRequest?, NSHTTPURLResponse?, AnyObject?) -> Void)?) {
         
         var mutableParameters: Dictionary<String, String> = [:]
-        if parameters != nil
-        {
-            mutableParameters = parameters!
+        if let parameters = parameters {
+            mutableParameters = parameters
         }
         
         mutableParameters.updateValue(NetworkManager.APIKey, forKey: "api_key")

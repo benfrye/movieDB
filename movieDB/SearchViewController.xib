@@ -20,10 +20,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eca-TM-xJW">
-                            <rect key="frame" x="0.0" y="562" width="600" height="38"/>
+                            <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="^" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfD-cf-QQV">
-                                    <rect key="frame" x="292" y="0.0" width="17" height="52"/>
+                                    <rect key="frame" x="292" y="0.0" width="17" height="58"/>
                                     <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="28"/>
                                     <color key="textColor" red="0.58897569444444442" green="0.58897569444444442" blue="0.58897569444444442" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -32,7 +32,7 @@
                             <color key="backgroundColor" red="0.9193102903646464" green="0.9193102903646464" blue="0.9193102903646464" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="63" id="ODM-5H-8CN"/>
-                                <constraint firstAttribute="height" constant="38" id="c2b-3F-QuC"/>
+                                <constraint firstAttribute="height" constant="44" id="c2b-3F-QuC"/>
                                 <constraint firstAttribute="bottom" secondItem="OfD-cf-QQV" secondAttribute="bottom" constant="-14" id="e6g-4f-ja1"/>
                                 <constraint firstItem="OfD-cf-QQV" firstAttribute="centerX" secondItem="Eca-TM-xJW" secondAttribute="centerX" id="oHU-ys-E46"/>
                                 <constraint firstItem="OfD-cf-QQV" firstAttribute="top" secondItem="Eca-TM-xJW" secondAttribute="top" id="zdH-iD-ovK"/>
@@ -44,11 +44,10 @@
                             </variation>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JK6-lo-Ed8">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="562"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </tableView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="JK6-lo-Ed8" firstAttribute="top" secondItem="wUw-gD-XWr" secondAttribute="top" id="1Pn-hq-S98"/>
                         <constraint firstItem="Eca-TM-xJW" firstAttribute="top" secondItem="JK6-lo-Ed8" secondAttribute="bottom" id="Bc9-U3-o53"/>
