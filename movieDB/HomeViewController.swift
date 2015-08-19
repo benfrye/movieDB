@@ -98,16 +98,6 @@ class HomeViewController:
             multiplier: 1.0,
             constant: 0.0)
         
-        var height = view.frame.size.height
-        if
-            let navigationController = navigationController,
-            let tabBarController = tabBarController
-        {
-            height -= UIApplication.sharedApplication().statusBarFrame.size.height
-            height -= navigationController.navigationBar.frame.size.height
-            height -= tabBarController.tabBar.frame.size.height
-        }
-        
         let heightConstraint = NSLayoutConstraint(
             item: searchView,
             attribute: NSLayoutAttribute.Height,
@@ -115,7 +105,7 @@ class HomeViewController:
             toItem: nil,
             attribute: NSLayoutAttribute.Height,
             multiplier: 1.0,
-            constant: height)
+            constant: view.frame.size.height)
         
         searchView.superview?.addConstraint(trailingConstraint)
         searchView.superview?.addConstraint(leadingConstraint)
