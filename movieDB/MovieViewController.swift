@@ -127,86 +127,27 @@ class MovieViewController:
                 }
                 
             case .Detail:
-                if let detailCell = tableView.dequeueReusableCellWithIdentifier(MovieDescriptionTableViewCell.className) as? MovieDescriptionTableViewCell {
-                    
-                    if let releaseDate = movie?.releaseDate {
-                        detailCell.dateLabel.text = dateFormatter.stringFromDate(releaseDate)
-                    }
-                    detailCell.titleLabel.text = movie?.title
-                    detailCell.descriptionLabel.text = movie?.plotDescription
+                if let detailCell = tableView.dequeueReusableCellWithIdentifier(MovieDescriptionTableViewCell.className) {
                     cell = detailCell
                 }
                 
             case .Reviews:
-                if let reviewCell = tableView.dequeueReusableCellWithIdentifier(SimpleChevronTableViewCell.className) as? SimpleChevronTableViewCell {
-                    
-                    reviewCell.titleLabel.text = "Reviews"
-                    reviewCell.setSelectable(false)
-                    movie?.reviews({ (reviews) -> Void in
-                        if let reviews = reviews where reviews.count > 0 {
-                            reviewCell.setSelectable(true)
-                        }
-                    })
-                    
+                if let reviewCell = tableView.dequeueReusableCellWithIdentifier(SimpleChevronTableViewCell.className) {
                     cell = reviewCell
                 }
                 
             case .Cast:
-                if
-                    let castCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell,
-                    let dataSource = castDataSource
-                {
-                    let castMember = dataSource[indexPath.row]
-                    castCell.titleLabel.text = castMember.name
-                    castCell.subtitleLabel.text = castMember.characterName
-                    castMember.profileImage({ (profileImage) -> Void in
-                        
-                        //don't change the image if this cell has been recycled
-                        if
-                            castCell.titleLabel.text == castMember.name,
-                            let profileImage = profileImage
-                        {
-                            castCell.thumbnailImageView.image = profileImage
-                        }
-                        else
-                        {
-                            castCell.noPhotoLabel.hidden = false
-                        }
-                        
-                    })
+                if let castCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) {
                     cell = castCell
                 }
                 
             case .Crew:
-                if
-                    let crewCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell,
-                    let dataSource = crewDataSource
-                {
-                    let crewMember = dataSource[indexPath.row]
-                    crewCell.titleLabel.text = crewMember.name
-                    crewCell.subtitleLabel.text = crewMember.job
-                    crewMember.profileImage({ (profileImage) -> Void in
-                        
-                        //don't change the image if this cell has been recycled
-                        if
-                            crewCell.titleLabel.text == crewMember.name,
-                            let profileImage = profileImage
-                        {
-                            crewCell.thumbnailImageView.image = profileImage
-                        }
-                        else
-                        {
-                            crewCell.noPhotoLabel.hidden = false
-                        }
-                    })
+                if let crewCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) {
                     cell = crewCell
                 }
                 
             case .SimilarMovies:
-                if let similarMoviesCell = tableView.dequeueReusableCellWithIdentifier(CollectionViewTableViewCell.className) as? CollectionViewTableViewCell {
-                    similarMoviesCollectionView = similarMoviesCell.collectionView
-                    similarMoviesCollectionView!.delegate = self
-                    similarMoviesCollectionView!.dataSource = self
+                if let similarMoviesCell = tableView.dequeueReusableCellWithIdentifier(CollectionViewTableViewCell.className) {
                     cell = similarMoviesCell
                 }
                 
@@ -221,34 +162,29 @@ class MovieViewController:
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let headerView: UIView?
+        var headerView: UIView? = nil
         
         if let switchSection = TableSections(rawValue: section) {
             
             switch switchSection {
             case .Crew:
-                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) as? SimpleHeaderView {
-                    simpleHeaderView.titleLabel.text = "Crew"
+                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) {
                     headerView = simpleHeaderView
                 }
                 
             case .Cast:
-                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) as? SimpleHeaderView {
-                    simpleHeaderView.titleLabel.text = "Cast"
+                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) {
                     headerView = simpleHeaderView
                 }
                 
             case .SimilarMovies:
-                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) as? SimpleHeaderView {
-                    simpleHeaderView.separatorView.hidden = true
-                    simpleHeaderView.titleLabel.text = "Similar Movies"
+                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) {
                     headerView = simpleHeaderView
                 }
                 
             default:
-                headerView = nil
+                break
             }
-            
         }
         
         return headerView
@@ -259,6 +195,127 @@ class MovieViewController:
     }
     
 // MARK: UITableViewDelegate Methods
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if let switchSection = TableSections(rawValue: indexPath.section) {
+            
+            switch switchSection {
+            case .Header:
+                break
+                
+            case .Detail:
+                if let cell = cell as? MovieDescriptionTableViewCell {
+                    
+                    if let releaseDate = movie?.releaseDate {
+                        cell.dateLabel.text = dateFormatter.stringFromDate(releaseDate)
+                    }
+                    cell.titleLabel.text = movie?.title
+                    cell.descriptionLabel.text = movie?.plotDescription
+                }
+                
+            case .Reviews:
+                if let cell = cell as? SimpleChevronTableViewCell {
+                    
+                    cell.titleLabel.text = "Reviews"
+                    cell.setSelectable(false)
+                    movie?.reviews({ (reviews) -> Void in
+                        if let reviews = reviews where reviews.count > 0 {
+                            cell.setSelectable(true)
+                        }
+                    })
+                }
+                
+            case .Cast:
+                if
+                    let cell = cell as? ImageTitleSubtitleTableViewCell,
+                    let dataSource = castDataSource
+                {
+                    let castMember = dataSource[indexPath.row]
+                    cell.titleLabel.text = castMember.name
+                    cell.subtitleLabel.text = castMember.characterName
+                    castMember.profileImage({ (profileImage) -> Void in
+                        
+                        //don't change the image if this cell has been recycled
+                        if
+                            cell.titleLabel.text == castMember.name,
+                            let profileImage = profileImage
+                        {
+                            cell.thumbnailImageView.image = profileImage
+                        }
+                        else
+                        {
+                            cell.noPhotoLabel.hidden = false
+                        }
+                        
+                    })
+                }
+                
+            case .Crew:
+                if
+                    let cell = cell as? ImageTitleSubtitleTableViewCell,
+                    let dataSource = crewDataSource
+                {
+                    let crewMember = dataSource[indexPath.row]
+                    cell.titleLabel.text = crewMember.name
+                    cell.subtitleLabel.text = crewMember.job
+                    crewMember.profileImage({ (profileImage) -> Void in
+                        
+                        //don't change the image if this cell has been recycled
+                        if
+                            cell.titleLabel.text == crewMember.name,
+                            let profileImage = profileImage
+                        {
+                            cell.thumbnailImageView.image = profileImage
+                        }
+                        else
+                        {
+                            cell.noPhotoLabel.hidden = false
+                        }
+                    })
+                }
+                
+            case .SimilarMovies:
+                if let cell = cell as? CollectionViewTableViewCell {
+                    similarMoviesCollectionView = cell.collectionView
+                    similarMoviesCollectionView!.delegate = self
+                    similarMoviesCollectionView!.dataSource = self
+                }
+                
+            default:
+                break
+            }
+            
+        }
+        
+    }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        if let switchSection = TableSections(rawValue: section) {
+            
+            switch switchSection {
+            case .Crew:
+                if let simpleHeaderView = view as? SimpleHeaderView {
+                    simpleHeaderView.titleLabel.text = "Crew"
+                }
+                
+            case .Cast:
+                if let simpleHeaderView = view as? SimpleHeaderView {
+                    simpleHeaderView.titleLabel.text = "Cast"
+                }
+                
+            case .SimilarMovies:
+                if let simpleHeaderView = view as? SimpleHeaderView {
+                    simpleHeaderView.separatorView.hidden = true
+                    simpleHeaderView.titleLabel.text = "Similar Movies"
+                }
+                
+            default:
+                break
+            }
+        }
+    }
     
     func heightForSection(section: Int) -> CGFloat {
         
@@ -407,35 +464,36 @@ class MovieViewController:
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        if
-            let dataSource = dataSourceForCollectionView(collectionView),
-            let collectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.className, forIndexPath: indexPath) as? MovieCollectionViewCell
-        {
-            collectionViewCell.movie = dataSource[indexPath.row]
-            dataSource[indexPath.row].poster { (posterImage) -> Void in
-                
-                //don't change the image if this cell has been recycled
-                if let movie = collectionViewCell.movie where movie == dataSource[indexPath.row] {
-                    
-                    if let posterImage = posterImage {
-                        
-                        collectionViewCell.movieImageView.image = posterImage
-                        
-                    } else {
-                        
-                        collectionViewCell.defaultLabel.text = dataSource[indexPath.row].title
-                        collectionViewCell.defaultLabel.hidden = false
-                    }
-                }
-            }
-            return collectionViewCell
-        }
-        
-        return UICollectionViewCell()
+        return collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.className, forIndexPath: indexPath)
     }
     
 // MARK: UICollectionViewDelegate Methods
+    
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        
+        if
+            let cell = cell as? MovieCollectionViewCell,
+            let dataSource = dataSourceForCollectionView(collectionView)
+        {
+            cell.movie = dataSource[indexPath.row]
+            dataSource[indexPath.row].poster { (posterImage) -> Void in
+                
+                //don't change the image if this cell has been recycled
+                if let movie = cell.movie where movie == dataSource[indexPath.row] {
+                    
+                    if let posterImage = posterImage {
+                        
+                        cell.movieImageView.image = posterImage
+                        
+                    } else {
+                        
+                        cell.defaultLabel.text = dataSource[indexPath.row].title
+                        cell.defaultLabel.hidden = false
+                    }
+                }
+            }
+        }
+    }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         

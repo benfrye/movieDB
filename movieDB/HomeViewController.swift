@@ -222,31 +222,33 @@ class HomeViewController:
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
+        return collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.className, forIndexPath: indexPath)
+    }
+    
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        
         if
-            let dataSource = dataSourceForCollectionView(collectionView),
-            let collectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.className, forIndexPath: indexPath) as? MovieCollectionViewCell
+            let cell = cell as? MovieCollectionViewCell,
+            let dataSource = dataSourceForCollectionView(collectionView)
         {
-            collectionViewCell.movie = dataSource[indexPath.row]
+            cell.movie = dataSource[indexPath.row]
             dataSource[indexPath.row].poster { (posterImage) -> Void in
                 
                 //don't change the image if this cell has been recycled
-                if let movie = collectionViewCell.movie where movie == dataSource[indexPath.row] {
+                if let movie = cell.movie where movie == dataSource[indexPath.row] {
                     
                     if let posterImage = posterImage {
                         
-                        collectionViewCell.movieImageView.image = posterImage
+                        cell.movieImageView.image = posterImage
                         
                     } else {
                         
-                        collectionViewCell.defaultLabel.text = dataSource[indexPath.row].title
-                        collectionViewCell.defaultLabel.hidden = false
+                        cell.defaultLabel.text = dataSource[indexPath.row].title
+                        cell.defaultLabel.hidden = false
                     }
                 }
             }
-            return collectionViewCell
         }
-        
-        return UICollectionViewCell()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

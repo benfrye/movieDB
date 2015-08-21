@@ -53,17 +53,23 @@ class ReviewViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if
-            let reviewCell = tableView.dequeueReusableCellWithIdentifier(ReviewTableViewCell.className) as? ReviewTableViewCell,
-            let dataSource = dataSource
-        {
-            reviewCell.configureWithReview(dataSource[indexPath.row])
+        if let reviewCell = tableView.dequeueReusableCellWithIdentifier(ReviewTableViewCell.className) {
             return reviewCell
         }
         return UITableViewCell()
     }
     
 // MARK: UITableViewDelegate Methods
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if
+            let reviewCell = cell as? ReviewTableViewCell,
+            let dataSource = dataSource
+        {
+            reviewCell.configureWithReview(dataSource[indexPath.row])
+        }
+    }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension

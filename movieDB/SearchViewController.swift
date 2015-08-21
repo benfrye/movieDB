@@ -194,8 +194,28 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if let cell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell {
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
+    
+// MARK: UITableViewDelegate Methods
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 113.0
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 113.0
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if
-            let cell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell,
+            let cell = cell as? ImageTitleSubtitleTableViewCell,
             let dataSource = dataSource
         {
             let movie = dataSource[indexPath.row]
@@ -216,23 +236,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
                 
                 cell.subtitleLabel.text = self.dateFormatter.stringFromDate(releaseDate)
             }
-            
-            return cell
-            
-        } else {
-            
-            return UITableViewCell()
         }
-    }
-    
-// MARK: UITableViewDelegate Methods
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 113.0
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 113.0
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
