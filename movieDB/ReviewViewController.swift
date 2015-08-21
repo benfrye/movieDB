@@ -52,11 +52,7 @@ class ReviewViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if let reviewCell = tableView.dequeueReusableCellWithIdentifier(ReviewTableViewCell.className) {
-            return reviewCell
-        }
-        return UITableViewCell()
+        return tableView.dequeueReusableCellWithIdentifier(ReviewTableViewCell.className, forIndexPath: indexPath)
     }
     
 // MARK: UITableViewDelegate Methods

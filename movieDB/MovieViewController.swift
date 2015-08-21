@@ -120,39 +120,32 @@ class MovieViewController:
         
         if let switchSection = TableSections(rawValue: indexPath.section) {
            
+            let cellClass: String?
             switch switchSection {
             case .Header:
-                if let headerCell = tableView.dequeueReusableCellWithIdentifier(ClearHeaderTableViewCell.className) {
-                    cell = headerCell
-                }
+                cellClass = ClearHeaderTableViewCell.className
                 
             case .Detail:
-                if let detailCell = tableView.dequeueReusableCellWithIdentifier(MovieDescriptionTableViewCell.className) {
-                    cell = detailCell
-                }
+                cellClass = MovieDescriptionTableViewCell.className
                 
             case .Reviews:
-                if let reviewCell = tableView.dequeueReusableCellWithIdentifier(SimpleChevronTableViewCell.className) {
-                    cell = reviewCell
-                }
+                cellClass = SimpleChevronTableViewCell.className
                 
             case .Cast:
-                if let castCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) {
-                    cell = castCell
-                }
+                cellClass = ImageTitleSubtitleTableViewCell.className
                 
             case .Crew:
-                if let crewCell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) {
-                    cell = crewCell
-                }
+                cellClass = ImageTitleSubtitleTableViewCell.className
                 
             case .SimilarMovies:
-                if let similarMoviesCell = tableView.dequeueReusableCellWithIdentifier(CollectionViewTableViewCell.className) {
-                    cell = similarMoviesCell
-                }
+                cellClass = CollectionViewTableViewCell.className
                 
             default:
-                break
+                cellClass = nil
+            }
+            
+            if let cellClass = cellClass {
+                cell = tableView.dequeueReusableCellWithIdentifier(cellClass, forIndexPath: indexPath)
             }
 
         }
@@ -167,17 +160,7 @@ class MovieViewController:
         if let switchSection = TableSections(rawValue: section) {
             
             switch switchSection {
-            case .Crew:
-                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) {
-                    headerView = simpleHeaderView
-                }
-                
-            case .Cast:
-                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) {
-                    headerView = simpleHeaderView
-                }
-                
-            case .SimilarMovies:
+            case .Crew, .Cast, .SimilarMovies:
                 if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) {
                     headerView = simpleHeaderView
                 }
@@ -294,25 +277,28 @@ class MovieViewController:
         
         if let switchSection = TableSections(rawValue: section) {
             
+            let titleText: String?
+            var hidden = false
+            
             switch switchSection {
             case .Crew:
-                if let simpleHeaderView = view as? SimpleHeaderView {
-                    simpleHeaderView.titleLabel.text = "Crew"
-                }
+                titleText = "Crew"
                 
             case .Cast:
-                if let simpleHeaderView = view as? SimpleHeaderView {
-                    simpleHeaderView.titleLabel.text = "Cast"
-                }
+                titleText = "Cast"
                 
             case .SimilarMovies:
-                if let simpleHeaderView = view as? SimpleHeaderView {
-                    simpleHeaderView.separatorView.hidden = true
-                    simpleHeaderView.titleLabel.text = "Similar Movies"
-                }
+                titleText = "Similar Movies"
+                hidden = true
                 
             default:
-                break
+                titleText = nil
+            }
+            
+            // Configure View
+            if let simpleHeaderView = view as? SimpleHeaderView {
+                simpleHeaderView.titleLabel.text = titleText
+                simpleHeaderView.separatorView.hidden = hidden
             }
         }
     }

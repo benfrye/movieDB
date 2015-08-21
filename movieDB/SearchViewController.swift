@@ -194,12 +194,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if let cell = tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className) as? ImageTitleSubtitleTableViewCell {
-            return cell
-        } else {
-            return UITableViewCell()
-        }
+        return tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className, forIndexPath: indexPath)
     }
     
 // MARK: UITableViewDelegate Methods

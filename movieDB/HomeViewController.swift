@@ -161,39 +161,41 @@ class HomeViewController:
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if let collectionViewTableViewCell = tableView.dequeueReusableCellWithIdentifier(CollectionViewTableViewCell.className) as? CollectionViewTableViewCell{
-            
-            collectionViewTableViewCell.collectionView.delegate = self
-            collectionViewTableViewCell.collectionView.dataSource = self
-            
-            return collectionViewTableViewCell
-        }
-        return UITableViewCell()
+        return tableView.dequeueReusableCellWithIdentifier(CollectionViewTableViewCell.className, forIndexPath: indexPath)
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-        if let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) as? SimpleHeaderView {
+        return tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className)
+    }
+    
+// MARK: UITableViewDelegate Methods
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        if let view = view as? SimpleHeaderView {
             
-            headerView.separatorView.hidden = true
+            view.separatorView.hidden = true
             
             if let switchSection = TableSections(rawValue: section) {
                 switch switchSection {
                 case .NewReleases:
-                    headerView.titleLabel.text = "New Releases"
+                    view.titleLabel.text = "New Releases"
                 case .ComingSoon:
-                    headerView.titleLabel.text = "Coming Soon"
+                    view.titleLabel.text = "Coming Soon"
                 case .Popular:
-                    headerView.titleLabel.text = "Popular"
+                    view.titleLabel.text = "Popular"
                 default:
                     break
                 }
             }
-            
-            return headerView
         }
-        return nil
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell = cell as? CollectionViewTableViewCell {
+            cell.collectionView.delegate = self
+            cell.collectionView.dataSource = self
+        }
     }
     
 // MARK: UICollectionViewDataSource Methods
@@ -221,7 +223,6 @@ class HomeViewController:
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
         return collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.className, forIndexPath: indexPath)
     }
     
