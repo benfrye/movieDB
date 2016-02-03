@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>13DC4717-F05B-4265-B54D-3155D03A472F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>movieDB</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9E208BE86D087DA010FDEF92706EFBECB60A3DAF</key>
+		<string>github.com:benfrye/movieDB.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>movieDB.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9E208BE86D087DA010FDEF92706EFBECB60A3DAF</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:benfrye/movieDB.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9E208BE86D087DA010FDEF92706EFBECB60A3DAF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9E208BE86D087DA010FDEF92706EFBECB60A3DAF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>movieDBGit</string>
+		</dict>
+	</array>
+</dict>
+</plist>

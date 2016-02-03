@@ -38,13 +38,14 @@
 		17BE51BC1B70F42700E87FAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17BE51BA1B70F42700E87FAE /* Main.storyboard */; };
 		17BE51BE1B70F42700E87FAE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17BE51BD1B70F42700E87FAE /* Images.xcassets */; };
 		17BE51C11B70F42700E87FAE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17BE51BF1B70F42700E87FAE /* LaunchScreen.xib */; };
-		17BE51CD1B70F42700E87FAE /* movieDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE51CC1B70F42700E87FAE /* movieDBTests.swift */; };
 		17BE51D81B70F79300E87FAE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE51D71B70F79300E87FAE /* NetworkManager.swift */; };
 		17C0CEF01B7A913D00C6090C /* SimpleChevronTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0CEEE1B7A913D00C6090C /* SimpleChevronTableViewCell.swift */; };
 		17C0CEF11B7A913D00C6090C /* SimpleChevronTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17C0CEEF1B7A913D00C6090C /* SimpleChevronTableViewCell.xib */; };
+		17D23ACA1C625109003DD34E /* movieDBCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D23AC91C625109003DD34E /* movieDBCellTests.swift */; };
+		17D23ACE1C6258D6003DD34E /* UIViewNibLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D23ACD1C6258D6003DD34E /* UIViewNibLoading.swift */; };
 		17DF96351B7B838B00BD76BB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF96331B7B838B00BD76BB /* SearchViewController.swift */; };
 		17DF96361B7B838B00BD76BB /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DF96341B7B838B00BD76BB /* SearchViewController.xib */; };
-		21C8AFA4620EF4F916EB7718 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A801F41F8C9AC6E7899D49B1 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		21C8AFA4620EF4F916EB7718 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A801F41F8C9AC6E7899D49B1 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,10 +94,11 @@
 		17BE51C01B70F42700E87FAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		17BE51C61B70F42700E87FAE /* movieDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = movieDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BE51CB1B70F42700E87FAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		17BE51CC1B70F42700E87FAE /* movieDBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieDBTests.swift; sourceTree = "<group>"; };
 		17BE51D71B70F79300E87FAE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		17C0CEEE1B7A913D00C6090C /* SimpleChevronTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleChevronTableViewCell.swift; sourceTree = "<group>"; };
 		17C0CEEF1B7A913D00C6090C /* SimpleChevronTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleChevronTableViewCell.xib; sourceTree = "<group>"; };
+		17D23AC91C625109003DD34E /* movieDBCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = movieDBCellTests.swift; sourceTree = "<group>"; };
+		17D23ACD1C6258D6003DD34E /* UIViewNibLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewNibLoading.swift; sourceTree = "<group>"; };
 		17DF96331B7B838B00BD76BB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		17DF96341B7B838B00BD76BB /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		29FFB46DF1DF5DB7FE29D971 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				17BE51B31B70F42700E87FAE /* Info.plist */,
+				17D23ACD1C6258D6003DD34E /* UIViewNibLoading.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -276,8 +279,8 @@
 		17BE51C91B70F42700E87FAE /* movieDBTests */ = {
 			isa = PBXGroup;
 			children = (
-				17BE51CC1B70F42700E87FAE /* movieDBTests.swift */,
 				17BE51CA1B70F42700E87FAE /* Supporting Files */,
+				17D23AC91C625109003DD34E /* movieDBCellTests.swift */,
 			);
 			path = movieDBTests;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17D23ACE1C6258D6003DD34E /* UIViewNibLoading.swift in Sources */,
 				17BE51D81B70F79300E87FAE /* NetworkManager.swift in Sources */,
 				178174E31B7A2A7800A28875 /* CollectionViewTableViewCell.swift in Sources */,
 				179D9F411B72509B008E8FD9 /* Movie.swift in Sources */,
@@ -509,7 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17BE51CD1B70F42700E87FAE /* movieDBTests.swift in Sources */,
+				17D23ACA1C625109003DD34E /* movieDBCellTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
