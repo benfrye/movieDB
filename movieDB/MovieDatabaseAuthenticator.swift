@@ -16,7 +16,7 @@ struct AuthenticationToken {
 
 class MovieDatabaseAuthenticator {
     
-    static let sharedAuthenticator = MovieDatabaseAuthenticator() //Does this even need to be an object?
+    static let sharedAuthenticator = MovieDatabaseAuthenticator()
     static var sessionID : String?
     
     let dateFormatter = NSDateFormatter()

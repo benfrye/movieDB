@@ -11,29 +11,13 @@ import SwiftyJSON
 
 class MovieImporter {
     
-    static let sharedInstance = MovieImporter() //Does this even need to be an object?
+    static let sharedInstance = MovieImporter()
     
     var dateFormatter = NSDateFormatter()
     
     init() {
         
         self.dateFormatter.dateFormat = "yyyy-MM-dd"
-    }
-    
-    func submitMovieRequest(searchRoute: String, completion: ([Movie]) -> Void) {
-        
-        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (response) -> Void in
-            
-            if let data = response.result.value {
-                
-                let JSONData = JSON(data)
-                let movieArray = self.processMovieData(JSONData)
-                completion(movieArray)
-                
-            } else {
-                completion([Movie]())
-            }
-        }
     }
     
     func processMovieData(JSONData: JSON) -> [Movie] {
@@ -62,6 +46,73 @@ class MovieImporter {
         }
         
         return movieArray
+    }
+    
+    func processCastData(JSONData: JSON) -> [Cast]? {
+        
+        var cast : [Cast]?
+        if JSONData["cast"].count > 0 {
+            
+            cast = []
+            for (_, subJson) in JSONData["cast"] {
+                
+                let castMember = Cast(
+                    id: subJson["id"].intValue,
+                    name: subJson["name"].stringValue,
+                    profilePath: subJson["profile_path"].stringValue,
+                    order: subJson["order"].intValue,
+                    characterName: subJson["character"].stringValue)
+                cast?.append(castMember)
+            }
+        }
+        return cast
+    }
+    
+    func processCrewData(JSONData: JSON) -> [Crew]? {
+        
+        var crew: [Crew]?
+        if JSONData["crew"].count > 0 {
+            
+            crew = []
+            for (_, subJson) in JSONData["crew"] {
+                let crewMember = Crew(
+                    id: subJson["id"].intValue,
+                    name: subJson["name"].stringValue,
+                    profilePath: subJson["profile_path"].stringValue,
+                    job: subJson["job"].stringValue,
+                    department: subJson["department"].stringValue)
+                crew?.append(crewMember)
+            }
+        }
+        return crew
+    }
+    
+    func processReviewData(JSONData: JSON) -> [Review]? {
+        
+        var reviews = [Review]()
+        for (_, subJson) in JSONData["results"] {
+            let review = Review(
+                author: subJson["author"].stringValue,
+                content: subJson["content"].stringValue)
+            reviews.append(review)
+        }
+        return reviews
+    }
+    
+    func submitMovieRequest(searchRoute: String, completion: ([Movie]) -> Void) {
+        
+        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (response) -> Void in
+            
+            if let data = response.result.value {
+                
+                let JSONData = JSON(data)
+                let movieArray = self.processMovieData(JSONData)
+                completion(movieArray)
+                
+            } else {
+                completion([Movie]())
+            }
+        }
     }
     
     func popularFilms(completion: ([Movie]) -> Void) {
@@ -142,37 +193,8 @@ class MovieImporter {
             
             if let data = response.result.value {
                 let JSONData = JSON(data)
-                
-                var cast : [Cast]?
-                if JSONData["cast"].count > 0 {
-                    
-                    cast = []
-                    for (_, subJson) in JSONData["cast"] {
-                        
-                        let castMember = Cast(
-                            id: subJson["id"].intValue,
-                            name: subJson["name"].stringValue,
-                            profilePath: subJson["profile_path"].stringValue,
-                            order: subJson["order"].intValue,
-                            characterName: subJson["character"].stringValue)
-                        cast?.append(castMember)
-                    }
-                }
-                
-                var crew: [Crew]?
-                if JSONData["crew"].count > 0 {
-                    
-                    crew = []
-                    for (_, subJson) in JSONData["crew"] {
-                        let crewMember = Crew(
-                            id: subJson["id"].intValue,
-                            name: subJson["name"].stringValue,
-                            profilePath: subJson["profile_path"].stringValue,
-                            job: subJson["job"].stringValue,
-                            department: subJson["department"].stringValue)
-                        crew?.append(crewMember)
-                    }
-                }
+                let cast = self.processCastData(JSONData)
+                let crew = self.processCrewData(JSONData)
                 
                 completion(cast: cast, crew: crew)
                 
@@ -190,13 +212,7 @@ class MovieImporter {
             if let data = response.result.value {
                 
                 let JSONData = JSON(data)
-                var reviews = [Review]()
-                for (_, subJson) in JSONData["results"] {
-                    let review = Review(
-                        author: subJson["author"].stringValue,
-                        content: subJson["content"].stringValue)
-                    reviews.append(review)
-                }
+                let reviews = self.processReviewData(JSONData)
                 completion(reviews)
                 
             } else {
@@ -206,6 +222,7 @@ class MovieImporter {
         }
     }
     
+    //TODO: NEEDS IMPLEMENTATION
     func videosForMovieID(movieID: Int, completion: () -> Void) {
         
         let searchRoute = "\(NetworkManager.baseRoute)/movie/\(movieID)/videos"
