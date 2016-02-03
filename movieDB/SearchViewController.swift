@@ -38,7 +38,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.registerNib(UINib(nibName: ImageTitleSubtitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ImageTitleSubtitleTableViewCell.className)
+        tableView.registerNib(UINib(nibName: String(ImageTitleSubtitleTableViewCell), bundle: nil), forCellReuseIdentifier: String(ImageTitleSubtitleTableViewCell))
     }
     
     func loadSearch(searchTerm: String?) {
@@ -194,7 +194,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(ImageTitleSubtitleTableViewCell.className, forIndexPath: indexPath)
+        return tableView.dequeueReusableCellWithIdentifier(String(ImageTitleSubtitleTableViewCell), forIndexPath: indexPath)
     }
     
 // MARK: UITableViewDelegate Methods

@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class MovieImporter {
     
-    static let sharedInstance = MovieImporter()
+    static let sharedInstance = MovieImporter() //Does this even need to be an object?
     
     var dateFormatter = NSDateFormatter()
     
@@ -22,9 +22,9 @@ class MovieImporter {
     
     func submitMovieRequest(searchRoute: String, completion: ([Movie]) -> Void) {
         
-        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (_, _, response) -> Void in
+        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (response) -> Void in
             
-            if let data = response.value {
+            if let data = response.result.value {
                 
                 let JSONData = JSON(data)
                 let movieArray = self.processMovieData(JSONData)
@@ -91,9 +91,9 @@ class MovieImporter {
         
         let searchRoute = "\(NetworkManager.baseRoute)/search/movie"
         let parameters = ["query": title]
-        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute, parameters: parameters) { (_, _, response) -> Void in
+        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute, parameters: parameters) { (response) -> Void in
             
-            if let data = response.value {
+            if let data = response.result.value {
                 
                 let JSONData = JSON(data)
                 let movieArray = self.processMovieData(JSONData)
@@ -120,10 +120,10 @@ class MovieImporter {
     func backdropForMovieID(movieID: Int, completion: (UIImage?) -> Void) {
         
         let searchRoute = "\(NetworkManager.baseRoute)/movie/\(movieID)/images"
-        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (_, _, response) -> Void in
+        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (response) -> Void in
             
             if
-                let data = response.value,
+                let data = response.result.value,
                 let backdrops = data["backdrops"] as? [NSDictionary] where backdrops.count > 0,
                 let backdropURL = backdrops[0]["file_path"] as? String
             {
@@ -138,9 +138,9 @@ class MovieImporter {
     
     func castAndCrewForMovieID(movieID: Int, completion: (cast: [Cast]?, crew: [Crew]?) -> Void) {
         let searchRoute = "\(NetworkManager.baseRoute)/movie/\(movieID)/credits"
-        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (_, _, response) -> Void in
+        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (response) -> Void in
             
-            if let data = response.value {
+            if let data = response.result.value {
                 let JSONData = JSON(data)
                 
                 var cast : [Cast]?
@@ -185,9 +185,9 @@ class MovieImporter {
     func reviewsForMovieID(movieID: Int, completion: ([Review]?) -> Void) {
         
         let searchRoute = "\(NetworkManager.baseRoute)/movie/\(movieID)/reviews"
-        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (_, _, response) -> Void in
+        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (response) -> Void in
             
-            if let data = response.value {
+            if let data = response.result.value {
                 
                 let JSONData = JSON(data)
                 var reviews = [Review]()
@@ -209,12 +209,12 @@ class MovieImporter {
     func videosForMovieID(movieID: Int, completion: () -> Void) {
         
         let searchRoute = "\(NetworkManager.baseRoute)/movie/\(movieID)/videos"
-        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (_, _, response) -> Void in
+        NetworkManager.sharedNetworkManager.submitJSONRequest(searchRoute) { (response) -> Void in
             
-            if let data = response.value {
+            if let data = response.result.value {
                 
                 let JSONData = JSON(data)
-                print(JSONData, appendNewline: true)
+                print(JSONData, separator: "", terminator: "")
             }
         }
     }

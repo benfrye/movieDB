@@ -14,8 +14,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var defaultLabel: UILabel!
     var movie: Movie?
     
-    static let className = "MovieCollectionViewCell" // FIXME: Need to find a nicer way of doing this
-    
     override func awakeFromNib() {
         
         super.awakeFromNib()

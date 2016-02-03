@@ -12,20 +12,20 @@ import SwiftyJSON
 
 class NetworkManager
 {
-    static let sharedNetworkManager = NetworkManager()
     static let APIKey = "REPLACEWITHAPIKEY"
+    static let sharedNetworkManager = NetworkManager() //Does this even need to be an object?
     static let APIVersion = "3"
     static let posterBaseRoute = "https://image.tmdb.org/t/p/w500"
     static let baseRoute = {
         return "https://api.themoviedb.org/\(APIVersion)"
     }()
     
-    func submitJSONRequest(route: String, completion: ((NSURLRequest?, NSHTTPURLResponse?, Result<AnyObject>) -> Void)?) {
+    func submitJSONRequest(route: String, completion: ((Response<AnyObject, NSError>) -> Void)?) {
         
         self.submitJSONRequest(route, parameters: nil, completion: completion)
     }
     
-    func submitJSONRequest(route: String, parameters: Dictionary<String, String>?, completion: ((NSURLRequest?, NSHTTPURLResponse?, Result<AnyObject>) -> Void)?) {
+    func submitJSONRequest(route: String, parameters: Dictionary<String, String>?, completion: ((Response<AnyObject, NSError>) -> Void)?) {
         
         var mutableParameters: Dictionary<String, String> = [:]
         if let parameters = parameters {
@@ -34,10 +34,10 @@ class NetworkManager
         
         mutableParameters.updateValue(NetworkManager.APIKey, forKey: "api_key")
         Alamofire.request(.GET, route, parameters: mutableParameters)
-            .responseJSON {request, response, data in
+            .responseJSON {response in
                 
                 if let completion = completion {
-                    completion(request, response, data)
+                    completion(response)
                 }
         }
     }

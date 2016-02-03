@@ -55,8 +55,8 @@ class HomeViewController:
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.registerNib(UINib(nibName: CollectionViewTableViewCell.className, bundle: nil), forCellReuseIdentifier: CollectionViewTableViewCell.className)
-        tableView.registerNib(UINib(nibName: SimpleHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: SimpleHeaderView.className)
+        tableView.registerNib(UINib(nibName: String(CollectionViewTableViewCell), bundle: nil), forCellReuseIdentifier: String(CollectionViewTableViewCell))
+        tableView.registerNib(UINib(nibName: String(SimpleHeaderView), bundle: nil), forHeaderFooterViewReuseIdentifier: String(SimpleHeaderView))
         
         updateNewReleases()
         updateComingSoon()
@@ -161,11 +161,11 @@ class HomeViewController:
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(CollectionViewTableViewCell.className, forIndexPath: indexPath)
+        return tableView.dequeueReusableCellWithIdentifier(String(CollectionViewTableViewCell), forIndexPath: indexPath)
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className)
+        return tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(SimpleHeaderView))
     }
     
 // MARK: UITableViewDelegate Methods
@@ -223,7 +223,7 @@ class HomeViewController:
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.className, forIndexPath: indexPath)
+        return collectionView.dequeueReusableCellWithReuseIdentifier(String(MovieCollectionViewCell), forIndexPath: indexPath)
     }
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {

@@ -1,6 +1,6 @@
 // Upload.swift
 //
-// Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
+// Copyright (c) 2014–2016 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -202,7 +202,7 @@ extension Manager {
     */
     public enum MultipartFormDataEncodingResult {
         case Success(request: Request, streamingFromDisk: Bool, streamFileURL: NSURL?)
-        case Failure(NSError)
+        case Failure(ErrorType)
     }
 
     /**
@@ -286,7 +286,9 @@ extension Manager {
             let URLRequestWithContentType = URLRequest.URLRequest
             URLRequestWithContentType.setValue(formData.contentType, forHTTPHeaderField: "Content-Type")
 
-            if formData.contentLength < encodingMemoryThreshold {
+            let isBackgroundSession = self.session.configuration.identifier != nil
+
+            if formData.contentLength < encodingMemoryThreshold && !isBackgroundSession {
                 do {
                     let data = try formData.encode()
                     let encodingResult = MultipartFormDataEncodingResult.Success(

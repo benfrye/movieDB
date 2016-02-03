@@ -16,7 +16,7 @@ struct AuthenticationToken {
 
 class MovieDatabaseAuthenticator {
     
-    static let sharedAuthenticator = MovieDatabaseAuthenticator()
+    static let sharedAuthenticator = MovieDatabaseAuthenticator() //Does this even need to be an object?
     static var sessionID : String?
     
     let dateFormatter = NSDateFormatter()
@@ -29,9 +29,9 @@ class MovieDatabaseAuthenticator {
     private func authenticate(completion: (AuthenticationToken) -> Void) {
 
         let authenticationRoute = "\(NetworkManager.baseRoute)/authentication/token/new"
-        NetworkManager.sharedNetworkManager.submitJSONRequest(authenticationRoute, completion: { (_, _, response) -> Void in
+        NetworkManager.sharedNetworkManager.submitJSONRequest(authenticationRoute, completion: { (response) -> Void in
             
-            if let data = response.value {
+            if let data = response.result.value {
                 
                 let JSONData = JSON(data)
                 if let requestToken = JSONData["request_token"].string,
@@ -48,8 +48,8 @@ class MovieDatabaseAuthenticator {
         
         let sessionRoute = "\(NetworkManager.baseRoute)/authentication/session/new"
         let parameters = [ "request_token": authenticationToken.requestToken ]
-        NetworkManager.sharedNetworkManager.submitJSONRequest(sessionRoute, parameters: parameters) { (_, _, response) -> Void in
-            if let data = response.value,
+        NetworkManager.sharedNetworkManager.submitJSONRequest(sessionRoute, parameters: parameters) { (response) -> Void in
+            if let data = response.result.value,
                let session_id = data["session_id"] as? String {
                 
                 MovieDatabaseAuthenticator.sessionID = session_id
@@ -67,13 +67,13 @@ class MovieDatabaseAuthenticator {
                 "username": username,
                 "password": password,
                 ]
-            NetworkManager.sharedNetworkManager.submitJSONRequest(validationRoute, parameters: parameters, completion: { (_, _, response) -> Void in
+            NetworkManager.sharedNetworkManager.submitJSONRequest(validationRoute, parameters: parameters, completion: { (response) -> Void in
                 
                 guard
-                    let data = response.value,
+                    let data = response.result.value,
                     let success = data["success"] as? Int
                 else {
-                    print("Error validating login", appendNewline: true)
+                    print("Error validating login", separator: "", terminator: "")
                     completion(success: false)
                     return
                 }

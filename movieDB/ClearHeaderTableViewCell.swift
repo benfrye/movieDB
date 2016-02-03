@@ -9,18 +9,10 @@
 import UIKit
 
 class ClearHeaderTableViewCell: UITableViewCell {
-    
-    static let className = "ClearHeaderTableViewCell" // FIXME: Need to find a nicer way of doing this
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.backgroundColor = UIColor.clearColor()
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

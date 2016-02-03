@@ -14,8 +14,6 @@ class MovieDescriptionTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    static let className = "MovieDescriptionTableViewCell" // FIXME: Need to find a nicer way of doing this
-    
     override func awakeFromNib() {
         
         super.awakeFromNib()

@@ -12,7 +12,5 @@ class SimpleHeaderView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
-    
-    static let className = "SimpleHeaderView" // FIXME: Need to find a nicer way of doing this
 
 }

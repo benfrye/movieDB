@@ -80,13 +80,13 @@ class MovieViewController:
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.registerNib(UINib(nibName: SimpleHeaderView.className, bundle: nil), forHeaderFooterViewReuseIdentifier: SimpleHeaderView.className)
+        tableView.registerNib(UINib(nibName: String(SimpleHeaderView), bundle: nil), forHeaderFooterViewReuseIdentifier: String(SimpleHeaderView))
         
-        tableView.registerNib(UINib(nibName: ClearHeaderTableViewCell.className, bundle: nil), forCellReuseIdentifier: ClearHeaderTableViewCell.className)
-        tableView.registerNib(UINib(nibName: MovieDescriptionTableViewCell.className, bundle: nil), forCellReuseIdentifier: MovieDescriptionTableViewCell.className)
-        tableView.registerNib(UINib(nibName: SimpleChevronTableViewCell.className, bundle: nil), forCellReuseIdentifier: SimpleChevronTableViewCell.className)
-        tableView.registerNib(UINib(nibName: ImageTitleSubtitleTableViewCell.className, bundle: nil), forCellReuseIdentifier: ImageTitleSubtitleTableViewCell.className)
-        tableView.registerNib(UINib(nibName: CollectionViewTableViewCell.className, bundle: nil), forCellReuseIdentifier: CollectionViewTableViewCell.className)
+        tableView.registerNib(UINib(nibName: String(ClearHeaderTableViewCell), bundle: nil), forCellReuseIdentifier: String(ClearHeaderTableViewCell))
+        tableView.registerNib(UINib(nibName: String(MovieDescriptionTableViewCell), bundle: nil), forCellReuseIdentifier: String(MovieDescriptionTableViewCell))
+        tableView.registerNib(UINib(nibName: String(SimpleChevronTableViewCell), bundle: nil), forCellReuseIdentifier: String(SimpleChevronTableViewCell))
+        tableView.registerNib(UINib(nibName: String(ImageTitleSubtitleTableViewCell), bundle: nil), forCellReuseIdentifier: String(ImageTitleSubtitleTableViewCell))
+        tableView.registerNib(UINib(nibName: String(CollectionViewTableViewCell), bundle: nil), forCellReuseIdentifier: String(CollectionViewTableViewCell))
     }
     
 // MARK: UITableViewDataSource Methods
@@ -123,22 +123,22 @@ class MovieViewController:
             let cellClass: String?
             switch switchSection {
             case .Header:
-                cellClass = ClearHeaderTableViewCell.className
+                cellClass = String(ClearHeaderTableViewCell)
                 
             case .Detail:
-                cellClass = MovieDescriptionTableViewCell.className
+                cellClass = String(MovieDescriptionTableViewCell)
                 
             case .Reviews:
-                cellClass = SimpleChevronTableViewCell.className
+                cellClass = String(SimpleChevronTableViewCell)
                 
             case .Cast:
-                cellClass = ImageTitleSubtitleTableViewCell.className
+                cellClass = String(ImageTitleSubtitleTableViewCell)
                 
             case .Crew:
-                cellClass = ImageTitleSubtitleTableViewCell.className
+                cellClass = String(ImageTitleSubtitleTableViewCell)
                 
             case .SimilarMovies:
-                cellClass = CollectionViewTableViewCell.className
+                cellClass = String(CollectionViewTableViewCell)
                 
             default:
                 cellClass = nil
@@ -161,7 +161,7 @@ class MovieViewController:
             
             switch switchSection {
             case .Crew, .Cast, .SimilarMovies:
-                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SimpleHeaderView.className) {
+                if let simpleHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(SimpleHeaderView)) {
                     headerView = simpleHeaderView
                 }
                 
@@ -417,11 +417,11 @@ class MovieViewController:
                 
             default:
                 break
-                
+        
             }
         }
     }
-    
+
 // UICollectionViewDataSource Methods
     
     func dataSourceForCollectionView(collectionView: UICollectionView) -> [Movie]? {
@@ -450,7 +450,7 @@ class MovieViewController:
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCellWithReuseIdentifier(MovieCollectionViewCell.className, forIndexPath: indexPath)
+        return collectionView.dequeueReusableCellWithReuseIdentifier(String(MovieCollectionViewCell), forIndexPath: indexPath)
     }
     
 // MARK: UICollectionViewDelegate Methods

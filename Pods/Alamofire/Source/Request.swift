@@ -1,6 +1,6 @@
 // Request.swift
 //
-// Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
+// Copyright (c) 2014–2016 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -215,7 +215,7 @@ public class Request {
 
         deinit {
             queue.cancelAllOperations()
-            queue.suspended = true
+            queue.suspended = false
         }
 
         // MARK: - NSURLSessionTaskDelegate
@@ -444,7 +444,7 @@ extension Request: CustomStringConvertible {
             components.append("(\(response.statusCode))")
         }
 
-        return " ".join(components)
+        return components.joinWithSeparator(" ")
     }
 }
 
@@ -454,11 +454,13 @@ extension Request: CustomDebugStringConvertible {
     func cURLRepresentation() -> String {
         var components = ["$ curl -i"]
 
-        guard let request = self.request else {
+        guard let
+            request = self.request,
+            URL = request.URL,
+            host = URL.host
+        else {
             return "$ curl command could not be created"
         }
-
-        let URL = request.URL
 
         if let HTTPMethod = request.HTTPMethod where HTTPMethod != "GET" {
             components.append("-X \(HTTPMethod)")
@@ -466,14 +468,14 @@ extension Request: CustomDebugStringConvertible {
 
         if let credentialStorage = self.session.configuration.URLCredentialStorage {
             let protectionSpace = NSURLProtectionSpace(
-                host: URL!.host!,
-                port: URL!.port?.integerValue ?? 0,
-                `protocol`: URL!.scheme,
-                realm: URL!.host!,
+                host: host,
+                port: URL.port?.integerValue ?? 0,
+                `protocol`: URL.scheme,
+                realm: host,
                 authenticationMethod: NSURLAuthenticationMethodHTTPBasic
             )
 
-            if let credentials = credentialStorage.credentialsForProtectionSpace(protectionSpace)?.values.array {
+            if let credentials = credentialStorage.credentialsForProtectionSpace(protectionSpace)?.values {
                 for credential in credentials {
                     components.append("-u \(credential.user!):\(credential.password!)")
                 }
@@ -487,7 +489,7 @@ extension Request: CustomDebugStringConvertible {
         if session.configuration.HTTPShouldSetCookies {
             if let
                 cookieStorage = session.configuration.HTTPCookieStorage,
-                cookies = cookieStorage.cookiesForURL(URL!) where !cookies.isEmpty
+                cookies = cookieStorage.cookiesForURL(URL) where !cookies.isEmpty
             {
                 let string = cookies.reduce("") { $0 + "\($1.name)=\($1.value ?? String());" }
                 components.append("-b \"\(string.substringToIndex(string.endIndex.predecessor()))\"")
@@ -518,15 +520,15 @@ extension Request: CustomDebugStringConvertible {
 
         if let
             HTTPBodyData = request.HTTPBody,
-            HTTPBody = NSString(data: HTTPBodyData, encoding: NSUTF8StringEncoding)
+            HTTPBody = String(data: HTTPBodyData, encoding: NSUTF8StringEncoding)
         {
             let escapedBody = HTTPBody.stringByReplacingOccurrencesOfString("\"", withString: "\\\"")
             components.append("-d \"\(escapedBody)\"")
         }
 
-        components.append("\"\(URL!.absoluteString)\"")
+        components.append("\"\(URL.absoluteString)\"")
 
-        return " \\\n\t".join(components)
+        return components.joinWithSeparator(" \\\n\t")
     }
 
     /// The textual representation used when written to an output stream, in the form of a cURL command.

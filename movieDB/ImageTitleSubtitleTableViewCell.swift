@@ -15,17 +15,10 @@ class ImageTitleSubtitleTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
-    static let className = "ImageTitleSubtitleTableViewCell" // FIXME: Need to find a nicer way of doing this
-    
     override func awakeFromNib() {
         
         super.awakeFromNib()
         self.prepareForReuse()
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        
-        super.setSelected(selected, animated: animated)
     }
     
     override func prepareForReuse() {

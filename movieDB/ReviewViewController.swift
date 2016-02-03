@@ -28,7 +28,7 @@ class ReviewViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.registerNib(UINib(nibName:ReviewTableViewCell.className, bundle: nil), forCellReuseIdentifier: ReviewTableViewCell.className)
+        tableView.registerNib(UINib(nibName:String(ReviewTableViewCell), bundle: nil), forCellReuseIdentifier: String(ReviewTableViewCell))
         
         if let movie = movie {
             movie.reviews({ (reviews) -> Void in
@@ -52,7 +52,7 @@ class ReviewViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(ReviewTableViewCell.className, forIndexPath: indexPath)
+        return tableView.dequeueReusableCellWithIdentifier(String(ReviewTableViewCell), forIndexPath: indexPath)
     }
     
 // MARK: UITableViewDelegate Methods

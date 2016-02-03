@@ -1,6 +1,6 @@
 // Error.swift
 //
-// Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
+// Copyright (c) 2014–2016 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,11 +39,27 @@ public struct Error {
         case PropertyListSerializationFailed = -6007
     }
 
-    static func errorWithCode(code: Code, failureReason: String) -> NSError {
+    /**
+        Creates an `NSError` with the given error code and failure reason.
+
+        - parameter code:          The error code.
+        - parameter failureReason: The failure reason.
+
+        - returns: An `NSError` with the given error code and failure reason.
+    */
+    public static func errorWithCode(code: Code, failureReason: String) -> NSError {
         return errorWithCode(code.rawValue, failureReason: failureReason)
     }
 
-    static func errorWithCode(code: Int, failureReason: String) -> NSError {
+    /**
+        Creates an `NSError` with the given error code and failure reason.
+
+        - parameter code:          The error code.
+        - parameter failureReason: The failure reason.
+
+        - returns: An `NSError` with the given error code and failure reason.
+    */
+    public static func errorWithCode(code: Int, failureReason: String) -> NSError {
         let userInfo = [NSLocalizedFailureReasonErrorKey: failureReason]
         return NSError(domain: Domain, code: code, userInfo: userInfo)
     }
