@@ -41,8 +41,10 @@
 		17BE51D81B70F79300E87FAE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE51D71B70F79300E87FAE /* NetworkManager.swift */; };
 		17C0CEF01B7A913D00C6090C /* SimpleChevronTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C0CEEE1B7A913D00C6090C /* SimpleChevronTableViewCell.swift */; };
 		17C0CEF11B7A913D00C6090C /* SimpleChevronTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17C0CEEF1B7A913D00C6090C /* SimpleChevronTableViewCell.xib */; };
-		17D23ACA1C625109003DD34E /* movieDBCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D23AC91C625109003DD34E /* movieDBCellTests.swift */; };
+		17D23ACA1C625109003DD34E /* MovieDBCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D23AC91C625109003DD34E /* MovieDBCellTests.swift */; };
 		17D23ACE1C6258D6003DD34E /* UIViewNibLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D23ACD1C6258D6003DD34E /* UIViewNibLoading.swift */; };
+		17D23AD21C62644D003DD34E /* MovieImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D23AD11C62644D003DD34E /* MovieImporterTests.swift */; };
+		17D23AD61C6265AA003DD34E /* TestMovieData.json in Resources */ = {isa = PBXBuildFile; fileRef = 17D23AD51C6265AA003DD34E /* TestMovieData.json */; };
 		17DF96351B7B838B00BD76BB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DF96331B7B838B00BD76BB /* SearchViewController.swift */; };
 		17DF96361B7B838B00BD76BB /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DF96341B7B838B00BD76BB /* SearchViewController.xib */; };
 		21C8AFA4620EF4F916EB7718 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A801F41F8C9AC6E7899D49B1 /* Pods.framework */; };
@@ -97,8 +99,10 @@
 		17BE51D71B70F79300E87FAE /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		17C0CEEE1B7A913D00C6090C /* SimpleChevronTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleChevronTableViewCell.swift; sourceTree = "<group>"; };
 		17C0CEEF1B7A913D00C6090C /* SimpleChevronTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleChevronTableViewCell.xib; sourceTree = "<group>"; };
-		17D23AC91C625109003DD34E /* movieDBCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = movieDBCellTests.swift; sourceTree = "<group>"; };
+		17D23AC91C625109003DD34E /* MovieDBCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDBCellTests.swift; sourceTree = "<group>"; };
 		17D23ACD1C6258D6003DD34E /* UIViewNibLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewNibLoading.swift; sourceTree = "<group>"; };
+		17D23AD11C62644D003DD34E /* MovieImporterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieImporterTests.swift; sourceTree = "<group>"; };
+		17D23AD51C6265AA003DD34E /* TestMovieData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestMovieData.json; sourceTree = "<group>"; };
 		17DF96331B7B838B00BD76BB /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		17DF96341B7B838B00BD76BB /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		29FFB46DF1DF5DB7FE29D971 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -280,7 +284,8 @@
 			isa = PBXGroup;
 			children = (
 				17BE51CA1B70F42700E87FAE /* Supporting Files */,
-				17D23AC91C625109003DD34E /* movieDBCellTests.swift */,
+				17D23AC91C625109003DD34E /* MovieDBCellTests.swift */,
+				17D23AD11C62644D003DD34E /* MovieImporterTests.swift */,
 			);
 			path = movieDBTests;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				17BE51CB1B70F42700E87FAE /* Info.plist */,
+				17D23AD51C6265AA003DD34E /* TestMovieData.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -427,6 +433,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17D23AD61C6265AA003DD34E /* TestMovieData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,7 +520,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17D23ACA1C625109003DD34E /* movieDBCellTests.swift in Sources */,
+				17D23AD21C62644D003DD34E /* MovieImporterTests.swift in Sources */,
+				17D23ACA1C625109003DD34E /* MovieDBCellTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

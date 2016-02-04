@@ -1,0 +1,51 @@
+{
+    "page": 1,
+    "results": [{
+                "poster_path": "\/oXUWEc5i3wYyFnL1Ycu8ppxxPvs.jpg",
+                "adult": false,
+                "overview": "In the 1820s, a frontiersman, Hugh Glass, sets out on a path of vengeance against those who left him for dead after a bear mauling.",
+                "release_date": "2015-12-25",
+                "genre_ids": [37, 18, 12, 53],
+                "id": 281957,
+                "original_title": "The Revenant",
+                "original_language": "en",
+                "title": "The Revenant",
+                "backdrop_path": "\/uETWtwsE1QjfoFqRQqFLnSjppPA.jpg",
+                "popularity": 42.096309,
+                "vote_count": 1079,
+                "video": false,
+                "vote_average": 7.36
+                }, {
+                "poster_path": "\/j153lerpF7CuzPYPfwMK7YxUIIH.jpg",
+                "adult": false,
+                "overview": "When Paul, an unemployed writer, decides to rent and live in a house that's rumored to be haunted, he puts his life and his relationships in grave danger as he obsessively attempts to get the story that will finally make his career.",
+                "release_date": "2012-10-01",
+                "genre_ids": [27],
+                "id": 214990,
+                "original_title": "An American Ghost Story",
+                "original_language": "en",
+                "title": "An American Ghost Story",
+                "backdrop_path": "\/oNUQfrFZ9zC3gVVzrZvfhClyH5v.jpg",
+                "popularity": 1.004917,
+                "vote_count": 4,
+                "video": false,
+                "vote_average": 3.88
+                }, {
+                "poster_path": "\/tNN8I20NLa9ABaRMajnCB9C4wLT.jpg",
+                "adult": false,
+                "overview": "A horror movie\/buddy comedy about Joey and his undead friend Bart who comes back from the dead as a revenant: an articulate zombie that needs to drink blood to arrest the decomposition of his body.",
+                "release_date": "2009-08-16",
+                "genre_ids": [35, 27],
+                "id": 79896,
+                "original_title": "The Revenant",
+                "original_language": "en",
+                "title": "The Revenant",
+                "backdrop_path": "\/3lI7ifi7cQsiFJtPDtDVQAiulgK.jpg",
+                "popularity": 1.398117,
+                "vote_count": 19,
+                "video": false,
+                "vote_average": 5.45
+                }],
+    "total_results": 3,
+    "total_pages": 1
+}
