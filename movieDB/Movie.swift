@@ -8,10 +8,23 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 struct Review {
     let author: String
     let content: String
+    
+    static func processReviewData(JSONData: JSON) -> [Review] {
+        
+        var reviews = [Review]()
+        for (_, subJson) in JSONData["results"] {
+            let review = Review(
+                author: subJson["author"].stringValue,
+                content: subJson["content"].stringValue)
+            reviews.append(review)
+        }
+        return reviews
+    }
 }
 
 class Movie: NSObject {
@@ -38,6 +51,34 @@ class Movie: NSObject {
         self.plotDescription = plotDescription
         self.releaseDate = releaseDate
         self.posterPath = posterPath
+    }
+    
+    static func processMovieData(JSONData: JSON) -> [Movie] {
+        
+        var movieArray = [Movie]()
+        for (_, subJson) in JSONData["results"] {
+            
+            if
+                let movieID = subJson["id"].int,
+                let title = subJson["title"].string
+            {
+                var releaseDate: NSDate?
+                if let dateString = subJson["release_date"].string {
+                    releaseDate = NSDateFormatterCache.formatter("yyyy-MM-dd").dateFromString(dateString)
+                }
+                
+                let movie = Movie(
+                    movieID: movieID,
+                    title: title,
+                    plotDescription: subJson["overview"].string,
+                    releaseDate: releaseDate,
+                    posterPath: subJson["poster_path"].string)
+                
+                movieArray.append(movie)
+            }
+        }
+        
+        return movieArray
     }
     
     func fullyCache(completion: () -> Void) {

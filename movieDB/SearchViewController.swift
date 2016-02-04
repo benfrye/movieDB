@@ -15,14 +15,12 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     var openingConstraint: NSLayoutConstraint?
     
     var searchTerm: String?
-    let dateFormatter = NSDateFormatter()
     var dataSource: [Movie]?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         configureGestures()
         configureTableView()
     }
@@ -229,7 +227,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             //Release Date
             if let releaseDate = movie.releaseDate {
                 
-                cell.subtitleLabel.text = self.dateFormatter.stringFromDate(releaseDate)
+                cell.subtitleLabel.text = NSDateFormatterCache.formatter("yyyy-MM-dd").stringFromDate(releaseDate)
             }
         }
     }

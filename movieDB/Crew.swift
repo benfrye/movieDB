@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 class Member {
     let id: Int
@@ -54,6 +55,24 @@ class Crew:Member {
         
         super.init(id: id, name: name, profilePath: profilePath)
     }
+    
+    static func processCrewData(JSONData: JSON) -> [Crew] {
+        
+        var crew = [Crew]()
+        if JSONData["crew"].count > 0 {
+            
+            for (_, subJson) in JSONData["crew"] {
+                let crewMember = Crew(
+                    id: subJson["id"].intValue,
+                    name: subJson["name"].stringValue,
+                    profilePath: subJson["profile_path"].stringValue,
+                    job: subJson["job"].stringValue,
+                    department: subJson["department"].stringValue)
+                crew.append(crewMember)
+            }
+        }
+        return crew
+    }
 }
 
 class Cast:Member {
@@ -66,5 +85,24 @@ class Cast:Member {
         self.characterName = characterName
         
         super.init(id: id, name: name, profilePath: profilePath)
+    }
+    
+    static func processCastData(JSONData: JSON) -> [Cast] {
+        
+        var cast = [Cast]()
+        if JSONData["cast"].count > 0 {
+            
+            for (_, subJson) in JSONData["cast"] {
+                
+                let castMember = Cast(
+                    id: subJson["id"].intValue,
+                    name: subJson["name"].stringValue,
+                    profilePath: subJson["profile_path"].stringValue,
+                    order: subJson["order"].intValue,
+                    characterName: subJson["character"].stringValue)
+                cast.append(castMember)
+            }
+        }
+        return cast
     }
 }

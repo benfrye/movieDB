@@ -30,7 +30,6 @@ class MovieViewController:
     @IBOutlet weak var tableView: UITableView!
     var similarMoviesCollectionView: UICollectionView?
     
-    let dateFormatter = NSDateFormatter()
     var movie: Movie?
     var castDataSource: [Cast]?
     var crewDataSource: [Crew]?
@@ -39,7 +38,6 @@ class MovieViewController:
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         configureView()
         movie?.videos({ (_: [Any]?) -> Void in
             
@@ -191,7 +189,7 @@ class MovieViewController:
                 if let cell = cell as? MovieDescriptionTableViewCell {
                     
                     if let releaseDate = movie?.releaseDate {
-                        cell.dateLabel.text = dateFormatter.stringFromDate(releaseDate)
+                        cell.dateLabel.text = NSDateFormatterCache.formatter("yyyy-MM-dd").stringFromDate(releaseDate)
                     }
                     cell.titleLabel.text = movie?.title
                     cell.descriptionLabel.text = movie?.plotDescription

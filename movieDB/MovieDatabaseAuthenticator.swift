@@ -19,13 +19,6 @@ class MovieDatabaseAuthenticator {
     static let sharedAuthenticator = MovieDatabaseAuthenticator()
     static var sessionID : String?
     
-    let dateFormatter = NSDateFormatter()
-    
-    init() {
-        
-        self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
-    }
-    
     private func authenticate(completion: (AuthenticationToken) -> Void) {
 
         let authenticationRoute = "\(NetworkManager.baseRoute)/authentication/token/new"
@@ -36,7 +29,7 @@ class MovieDatabaseAuthenticator {
                 let JSONData = JSON(data)
                 if let requestToken = JSONData["request_token"].string,
                     let expirationDateString = JSONData["expires_at"].string,
-                    let expirationDate = self.dateFormatter.dateFromString(expirationDateString) {
+                    let expirationDate = NSDateFormatterCache.formatter("yyyy-MM-dd HH:mm:ss zzz").dateFromString(expirationDateString) {
 
                         completion(AuthenticationToken(requestToken: requestToken, expirationDate: expirationDate))
                 }
